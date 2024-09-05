@@ -1,8 +1,7 @@
 <?php
 
 $inData = getRequestInfo();
-$DateCreated = $inData["DateCreated"];
-$DateLastLoggedIn = $inData["DateLastLoggedIn"];
+
 $FirstName = $inData["FirstName"];
 $LastName = $inData["LastName"];
 $Login = $inData["Login"];
