@@ -7,7 +7,7 @@ body
 {
     font-size: 40px;
     width: 100%;
-    margin:  2%;
+    margin: 2% 5;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
     color: #cacaca;
@@ -17,7 +17,7 @@ body
 {
     font-size: 30px;
     width: 70%;
-    margin-left: 15%;
+    margin-left: 13%;
     padding: 25px;
     background-color: #030e42;
     text-align: center; 
@@ -43,18 +43,20 @@ body
 
 .buttons
 {
-    font-size: 30px;
-    border-radius: 25px;
-    width: 50%;
-    margin-left: 25%;
-    font-family: 'Ubuntu', sans-serif;
-    margin: 0 auto; 
+    padding: 15px; /* Increased padding */
+    background-color: #06a347; 
+    color: #000000; /* Black text */
+    border: 1px solid #000000; 
+    border-radius: 5px;
+    width: 100%; 
+    font-size: 1.3rem; /* Increased font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
 }
 
 .buttons:hover{
-    background-color: #eae60b60;
-    color: #FFFFFF;
-    opacity: 50%;
+    background-color: #08c787;
+    color: #FFFFFF; /* Change text color on hover */
 }
 
 #loginName
@@ -74,7 +76,7 @@ body
 	font-size: 30px;
 }
 
-input[type="text"],input[type="password"]{
+input[type="text"],input[type="password"] {
     border-radius: 25px;
     text-align: center;
     width: 80%;
@@ -139,4 +141,16 @@ select{
     margin-bottom: 1%;
     font-family: 'Ubuntu', sans-serif;
     color: #95060a;
+}
+
+/* Mobile responsiveness */
+@media only screen and (max-width: 600px) {
+    .form-container {
+        width: 100%;
+        padding: 30px;
+    }
+
+    .buttons {
+        font-size: 1.2rem; /* Slightly reduced font size for mobile */
+    }
 }
