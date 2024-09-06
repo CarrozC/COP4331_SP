@@ -1,16 +1,16 @@
 body 
 {
-    background-color: #363434;
+    background-color: #02021d;
 }
 
 #title 
 {
     font-size: 40px;
     width: 100%;
-    margin: 2% 5%;
+    margin:  2%;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
-    color: #eeac12;
+    color: #cacaca;
 }
 
 #loginDiv
@@ -19,7 +19,7 @@ body
     width: 70%;
     margin-left: 15%;
     padding: 25px;
-    background-color: #000000;
+    background-color: #030e42;
     text-align: center; 
 }
 
@@ -88,10 +88,10 @@ input[type="text"],input[type="password"]{
     font-size: 0.8em;
     width: 90%;
     text-align: center;
-    margin-left: 5%;
+    margin-left: 0;
     margin-bottom: 2%;
     font-family: 'Ubuntu', sans-serif;
-    color: #ffd104;
+    color: #cecece;
 }
 
 #loginResult{
