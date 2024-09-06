@@ -1,24 +1,28 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Login</title> 
-        <script type="text/javascript" src="js/md5.js"></script>
-	    <script type="text/javascript" src="js/code.js"></script>
-        <link href="css/styles.css" rel="stylesheet">	
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    </head>
-    <body>
-    <div style="text-align: center;">
-        <h1>Login</h1>
-        <form id="login" class="input-form">
-            <input type="text" id="login-name" placeholder="username" name="username">
-            <input type="text" id="login-password" placeholder="password" name="password">
-        </form>
-        <h1>Sign Up</h1>
-        <form id="signup" class="input-form">
-            <input type="text" id="first-name" placeholder="First Name" name="first-name">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title> 
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="css/login.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+</head>
+<body>
 
-        </form>
-    </div>
-    </body>
+<div class="form-container">
+    <!-- Login Form -->
+    <h1 class="form-title">Login</h1>
+    <form id="login" class="input-form">
+        <input type="text" id="login-name" placeholder="Username" name="username">
+        
+        <input type="password" id="login-password" placeholder="Password" name="password">
+        <button type="button" class="buttons" onclick="doLogin();">Login</button>
+    </form>
+
+    <button type="button" class="buttons" onclick="location.href='signup.html';">Sign Up</button>
+</div>
+
+</body>
 </html>
