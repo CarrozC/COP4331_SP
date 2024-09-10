@@ -13,7 +13,7 @@ body {
     background-color: #030e42; 
     padding: 60px; 
     border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Soft shadow */
     text-align: center;
     width: 500px; 
     max-width: 90%; 
@@ -22,13 +22,13 @@ body {
 
 .form-title {
     font-size: 2.5rem; 
-    color: #cecece; /* Light gray color */
+    color: #cecece; 
     margin-bottom: 30px; 
     text-align: center;
     font-weight: bold;
 }
 
-/* Styling the form input fields */
+
 .input-form input[type="text"], .input-form input[type="password"] {
     padding: 12px; 
     font-size: 1.3rem; 
@@ -36,20 +36,20 @@ body {
     border: 1px solid #ccc;
     width: 100%; 
     margin-bottom: 25px; 
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; 
     color: #333; /* Darker input text */
-    box-sizing: border-box; 
+    box-sizing: border-box; /* Include padding in width */
 }
 
 
 .buttons {
-    padding: 15px; /* Increased padding */
+    padding: 15px; 
     background-color: #06a347; 
-    color: #000000; /* Black text */
+    color: #000000; 
     border: 1px solid #000000; 
     border-radius: 5px;
     width: 100%; 
-    font-size: 1.3rem; /* Increased font size */
+    font-size: 1.3rem; 
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -59,13 +59,13 @@ body {
     margin-top: 25px; 
 }
 
-/* Hover effect for buttons */
+
 .buttons:hover {
     background-color: #08c787;
-    color: #FFFFFF; /* Change text color on hover */
+    color: #FFFFFF; 
 }
 
-/* Mobile responsiveness */
+
 @media only screen and (max-width: 600px) {
     .form-container {
         width: 100%;
@@ -73,6 +73,6 @@ body {
     }
 
     .buttons {
-        font-size: 1.2rem; /* Slightly reduced font size for mobile */
+        font-size: 1.2rem; 
     }
 }
