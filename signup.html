@@ -13,11 +13,11 @@
         <div id="form-container">
             <h1 class="form-title">Sign Up</h1>
             <form id="signup" class="input-form">
-                <input type="text" placeholder="First Name" id="firstName" name="firstName">
-                <input type="text" placeholder="Last Name" id="lastName" name="lastName">
-                <input type="text" placeholder="Username" id="userName" name="userName">
-                <input type="password" placeholder="Password" id="password" name="password">
-                <button class="buttons" id="signUpConfirm" <!--TO DO: onclick-->Sign Up!</button>
+                <input type="text" placeholder="First Name" id="signUpFirstName" name="firstName", required>
+                <input type="text" placeholder="Last Name" id="signupLastName" name="lastName", required>
+                <input type="text" placeholder="Username" id="signupLogin" name="userName", required>
+                <input type="password" placeholder="Password" id="signupPassword" name="password" required>
+                <button class="buttons" id="signUpConfirm" type="button" onclick="doSignup()">Sign Up!</button>
             </form>
         </div>
     </body>
