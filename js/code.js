@@ -71,7 +71,7 @@ function doSignup() {
         return;
     }
 
-    let tmp = { firstName: firstName, lastName: lastName, login: login, password: password };
+    let tmp = { FirstName: firstName, LastName: lastName, Login: login, Password: password };
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/Signup.' + extension; // Ensure this is the correct endpoint URL
