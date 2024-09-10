@@ -57,6 +57,51 @@ function doLogin()
 	}
 
 }
+function doSignup() {
+    let firstName = document.getElementById("signupFirstName").value;
+    let lastName = document.getElementById("signupLastName").value;
+    let login = document.getElementById("signupLogin").value;
+    let password = document.getElementById("signupPassword").value;
+    let passwordConfirm = document.getElementById("signupPasswordConfirm").value;
+
+    // Check if passwords match
+    if (password !== passwordConfirm) {
+        document.getElementById("signupResult").innerHTML = "Passwords do not match.";
+        document.getElementById("signupResult").style.color = "red"; // Set error message color to red
+        return;
+    }
+
+    let tmp = { firstName: firstName, lastName: lastName, login: login, password: password };
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/Signup.' + extension; // Ensure this is the correct endpoint URL
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+
+                if (jsonObject.error) {
+                    document.getElementById("signupResult").innerHTML = "Signup failed: " + jsonObject.error;
+                    document.getElementById("signupResult").style.color = "red";
+                    return;
+                }
+
+                // If successful, redirect to index or give feedback
+                window.location.href = "index.html";
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        document.getElementById("signupResult").innerHTML = err.message;
+        document.getElementById("signupResult").style.color = "red";
+    }
+}
+
 
 function saveCookie()
 {
