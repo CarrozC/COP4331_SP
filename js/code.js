@@ -57,52 +57,54 @@ function doLogin()
 	}
 
 }
-function doSignup() {
-    let firstName = document.getElementById("signUpFirstName").value; // Uppercase U in 'signUpFirstName'
-    let lastName = document.getElementById("signupLastName").value;    // Lowercase U in 'signupLastName'
-    let login = document.getElementById("signupLogin").value;          // Lowercase U in 'signupLogin'
-    let password = document.getElementById("signupPassword").value;    // Lowercase U in 'signupPassword'
-    let passwordConfirm = document.getElementById("signupPasswordConfirm").value; // Lowercase U in 'signupPasswordConfirm'
+// Signup Function
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("signUpConfirm").addEventListener("click", function() {
+        let firstName = document.getElementById("signupFirstName").value;
+        let lastName = document.getElementById("signupLastName").value;
+        let login = document.getElementById("signupLogin").value;
+        let password = document.getElementById("signupPassword").value;
+        let passwordConfirm = document.getElementById("signupPasswordConfirm").value;
 
-    // Check if passwords match
-    if (password !== passwordConfirm) {
-        document.getElementById("signupResult").innerHTML = "Passwords do not match.";
-        document.getElementById("signupResult").style.color = "red";
-        return;
-    }
+        // Check if passwords match
+        if (password !== passwordConfirm) {
+            document.getElementById("signupResult").innerHTML = "Passwords do not match.";
+            document.getElementById("signupResult").style.color = "red";
+            return;
+        }
 
-    let tmp = { FirstName: firstName, LastName: lastName, Login: login, Password: password };
-    let jsonPayload = JSON.stringify(tmp);
+        let tmp = { FirstName: firstName, LastName: lastName, Login: login, Password: password };
+        let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/SignUp.' + extension;
-    console.log("API Request URL:", url);  // Log the URL to check
+        let url = urlBase + '/SignUp.' + extension;
+        console.log("API Request URL:", url);  // Log the URL to check
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                let jsonObject = JSON.parse(xhr.responseText);
+        try {
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let jsonObject = JSON.parse(xhr.responseText);
 
-                if (jsonObject.error) {
-                    document.getElementById("signupResult").innerHTML = "Signup failed: " + jsonObject.error;
-                    document.getElementById("signupResult").style.color = "red";
-                    return;
+                    if (jsonObject.error) {
+                        document.getElementById("signupResult").innerHTML = "Signup failed: " + jsonObject.error;
+                        document.getElementById("signupResult").style.color = "red";
+                        return;
+                    }
+
+                    // If successful, redirect to index or give feedback
+                    window.location.href = "index.html";
                 }
-
-                // If successful, redirect to index or give feedback
-                window.location.href = "index.html";
-            }
-        };
-        xhr.send(jsonPayload);
-    } catch (err) {
-        document.getElementById("signupResult").innerHTML = err.message;
-        document.getElementById("signupResult").style.color = "red";
-    }
-}
-
+            };
+            xhr.send(jsonPayload);
+        } catch (err) {
+            document.getElementById("signupResult").innerHTML = err.message;
+            document.getElementById("signupResult").style.color = "red";
+        }
+    });
+});
 
 
 
