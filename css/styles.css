@@ -28,9 +28,9 @@ body {
 }
 
 .subtitle {
-    font-size: 1.5rem; 
+    font-size: 2.0rem; 
     color: #cecece; 
-    margin-bottom: 30px; 
+    margin-top: 0px; 
     text-align: center;
     font-weight: bold; 
 }
