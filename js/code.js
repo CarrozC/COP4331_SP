@@ -102,7 +102,7 @@ function handleLogin() {
                 saveCookie();
 
                 // Redirect to another page (e.g., dashboard)
-                window.location.href = "dashboard.html";
+                window.location.href = "contacts.html";
             }
         };
         xhr.send(jsonPayload);
