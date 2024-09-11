@@ -28,10 +28,35 @@ function handleSignup() {
     let password = document.getElementById("signupPassword").value;
     let passwordConfirm = document.getElementById("signupPasswordConfirm").value;
 
+	//Validation for non-empty values
+	if(firstName === ""){
+		document.getElementById("signupFirstName").innerHTML = "First Name is required.";
+		document.getElementById("signupFirstName").style.color = "red";
+	}
+
+	if(lastName === ""){
+		document.getElementById("signupLastName").innerHTML = "Last Name is required.";
+		document.getElementById("signupLastName").style.color = "red";
+	}
+
+	if (login === "") {
+        document.getElementById("signupLogin").innerHTML = "Username is required.";
+        document.getElementById("signupLogin").style.color = "red";
+        return;
+    }
+
+    //password length (minimum of 8 characters)
+    if (password.length < 8) {
+        document.getElementById("signupPassword").innerHTML = "Password must be at least 8 characters.";
+        document.getElementById("signupPassword").style.color = "red";
+        return;
+    }
+
+
     // Check if passwords match
     if (password !== passwordConfirm) {
-        document.getElementById("signupResult").innerHTML = "Passwords do not match.";
-        document.getElementById("signupResult").style.color = "red";
+        document.getElementById("signupPasswordConfirm").innerHTML = "Passwords do not match.";
+        document.getElementById("signupPasswordConfirm").style.color = "red";
         return;
     }
 
