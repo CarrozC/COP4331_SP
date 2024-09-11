@@ -74,7 +74,7 @@ function doSignup() {
     let tmp = { FirstName: firstName, LastName: lastName, Login: login, Password: password };
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/Signup.' + php; // Ensure this is the correct endpoint URL
+    let url = urlBase + '/SignUp.' + php; // Ensure this is the correct endpoint URL
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
