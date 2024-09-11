@@ -21,7 +21,6 @@ else
     $stmt->execute();
     $stmt->close();
     $conn->close();
-    returnWithError("CREATED");
 }
 
 function getRequestInfo()
@@ -33,6 +32,12 @@ function sendResultInfoAsJson($obj)
 {
     header('Content-type: application/json');
     echo $obj;
+}
+
+function returnWithInfo( $firstName, $lastName, $id )
+{
+    $retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+    sendResultInfoAsJson( $retValue );
 }
 
 function returnWithError($err)
