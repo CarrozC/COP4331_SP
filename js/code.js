@@ -58,6 +58,12 @@ function doLogin()
 
 }
 function doSignup() {
+	console.log(document.getElementById("signUpFirstName"));
+	console.log(document.getElementById("signupLastName"));
+	console.log(document.getElementById("signupLogin"));
+	console.log(document.getElementById("signupPassword"));
+	console.log(document.getElementById("signupPasswordConfirm"));
+
     console.log("Sign-up button clicked");
     let firstName = document.getElementById("signupFirstName").value;
     let lastName = document.getElementById("signupLastName").value;
