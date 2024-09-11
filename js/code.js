@@ -32,11 +32,13 @@ function handleSignup() {
 	if(firstName === ""){
 		document.getElementById("signupFirstName").innerHTML = "First Name is required.";
 		document.getElementById("signupFirstName").style.color = "red";
+		return; 
 	}
 
 	if(lastName === ""){
 		document.getElementById("signupLastName").innerHTML = "Last Name is required.";
 		document.getElementById("signupLastName").style.color = "red";
+		return; 
 	}
 
 	if (login === "") {
