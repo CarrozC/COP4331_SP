@@ -58,23 +58,16 @@ function doLogin()
 
 }
 function doSignup() {
-	console.log(document.getElementById("signUpFirstName"));
-	console.log(document.getElementById("signupLastName"));
-	console.log(document.getElementById("signupLogin"));
-	console.log(document.getElementById("signupPassword"));
-	console.log(document.getElementById("signupPasswordConfirm"));
-
-    console.log("Sign-up button clicked");
-    let firstName = document.getElementById("signupFirstName").value;
-    let lastName = document.getElementById("signupLastName").value;
-    let login = document.getElementById("signupLogin").value;
-    let password = document.getElementById("signupPassword").value;
-    let passwordConfirm = document.getElementById("signupPasswordConfirm").value;
+    let firstName = document.getElementById("signUpFirstName").value; // Uppercase U in 'signUpFirstName'
+    let lastName = document.getElementById("signupLastName").value;    // Lowercase U in 'signupLastName'
+    let login = document.getElementById("signupLogin").value;          // Lowercase U in 'signupLogin'
+    let password = document.getElementById("signupPassword").value;    // Lowercase U in 'signupPassword'
+    let passwordConfirm = document.getElementById("signupPasswordConfirm").value; // Lowercase U in 'signupPasswordConfirm'
 
     // Check if passwords match
     if (password !== passwordConfirm) {
         document.getElementById("signupResult").innerHTML = "Passwords do not match.";
-        document.getElementById("signupResult").style.color = "red"; // Set error message color to red
+        document.getElementById("signupResult").style.color = "red";
         return;
     }
 
@@ -109,6 +102,9 @@ function doSignup() {
         document.getElementById("signupResult").style.color = "red";
     }
 }
+
+
+
 
 
 function saveCookie()
