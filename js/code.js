@@ -5,60 +5,10 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-function doLogin()
-{
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	
-	let login = document.getElementById("loginName").value;
-	let password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
-	
-	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
-	let jsonPayload = JSON.stringify( tmp );
-	
-	let url = urlBase + '/Login.' + extension;
-
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
-		
-				if( userId < 1 )
-				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-					return;
-				}
-		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
-
-				saveCookie();
-	
-				window.location.href = "color.html";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("loginResult").innerHTML = err.message;
-	}
-
-}
-// Signup Function
+// Signup and Login
 document.addEventListener("DOMContentLoaded", function() {
+    // Event listener for the signup button (already implemented)
     document.getElementById("signUpConfirm").addEventListener("click", function() {
         let firstName = document.getElementById("signupFirstName").value;
         let lastName = document.getElementById("signupLastName").value;
@@ -102,6 +52,51 @@ document.addEventListener("DOMContentLoaded", function() {
         } catch (err) {
             document.getElementById("signupResult").innerHTML = err.message;
             document.getElementById("signupResult").style.color = "red";
+        }
+    });
+
+    // Event listener for the login button
+    document.getElementById("loginConfirm").addEventListener("click", function() {
+        let login = document.getElementById("loginName").value;
+        let password = document.getElementById("loginPassword").value;
+
+        document.getElementById("loginResult").innerHTML = "";  // Clear any previous result
+
+        let tmp = { login: login, password: password };
+        let jsonPayload = JSON.stringify(tmp);
+
+        let url = urlBase + '/Login.' + extension;
+        console.log("API Request URL:", url);  // Log the URL to check
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+        try {
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let jsonObject = JSON.parse(xhr.responseText);
+                    let userId = jsonObject.id;
+
+                    if (userId < 1) {
+                        document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+                        document.getElementById("loginResult").style.color = "red";
+                        return;
+                    }
+
+                    // Store user info in cookies or session
+                    firstName = jsonObject.firstName;
+                    lastName = jsonObject.lastName;
+                    saveCookie();
+
+                    // Redirect to another page (e.g., dashboard)
+                    window.location.href = "dashboard.html";
+                }
+            };
+            xhr.send(jsonPayload);
+        } catch (err) {
+            document.getElementById("loginResult").innerHTML = err.message;
+            document.getElementById("loginResult").style.color = "red";
         }
     });
 });
