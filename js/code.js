@@ -58,6 +58,7 @@ function doLogin()
 
 }
 function doSignup() {
+    console.log("Sign-up button clicked");
     let firstName = document.getElementById("signupFirstName").value;
     let lastName = document.getElementById("signupLastName").value;
     let login = document.getElementById("signupLogin").value;
