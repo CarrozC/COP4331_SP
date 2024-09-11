@@ -10,7 +10,7 @@ $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
-    $stmt = $conn->prepare("INSERT INTO Contacts (Name, Phone, Email, UserID) VALUES(?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO Contacts (Name, Phone, Email, UserID) VALUES(?, ?, ?, ?)");
     $stmt->bind_param("sssi", $Name, $phone, $email, $userId);
     $stmt->execute();
     $stmt->close();
