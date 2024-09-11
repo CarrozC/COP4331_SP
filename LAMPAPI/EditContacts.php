@@ -7,12 +7,10 @@ $userId = $inData["userId"];
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
-if ($conn->connect_error) {
+if ($conn->connect_error) {-
     returnWithError($conn->connect_error);
 } else {
-    // "UPDATE Contacts SET (Name, Phone, Email) VALUES(?, ?, ?) WHERE UserID = ?)"
-    //$stmt = $conn->prepare("INSERT INTO Contacts (Name, Phone, Email, UserID) VALUES(?, ?, ?, ?)");
-    $stmt = $conn->prepare("UPDATE Contacts SET (Name, Phone, Email) VALUES(?, ?, ?) WHERE UserID = ?)");
+    $stmt = $conn->prepare("UPDATE Contacts SET Name = ?, Phone = ?, Email = ? WHERE UserID = ?");
     $stmt->bind_param("sssi", $newName, $newPhone, $newEmail, $userId);
     $stmt->execute();
     $stmt->close();
