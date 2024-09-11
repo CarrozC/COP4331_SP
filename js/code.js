@@ -75,6 +75,7 @@ function doSignup() {
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/SignUp.' + extension;
+    console.log("API Request URL:", url);  // Log the URL to check
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
