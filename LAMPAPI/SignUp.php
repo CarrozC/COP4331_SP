@@ -21,6 +21,7 @@ else
     $stmt->execute();
     $stmt->close();
     $conn->close();
+    returnWithInfo("Successful");
 }
 
 function getRequestInfo()
