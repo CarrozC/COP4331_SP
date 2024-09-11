@@ -28,30 +28,39 @@ function handleSignup() {
     let password = document.getElementById("signupPassword").value;
     let passwordConfirm = document.getElementById("signupPasswordConfirm").value;
 
+
+	
+    document.getElementById("firstNameResult").innerHTML = "";
+    document.getElementById("lastNameResult").innerHTML = "";
+    document.getElementById("usernameResult").innerHTML = "";
+    document.getElementById("passwordResult").innerHTML = "";
+    document.getElementById("confirmPasswordResult").innerHTML = "";
+
+    let hasErrors = false;
 	//Validation for non-empty values
 	if(firstName === ""){
 		document.getElementById("signupFirstName").innerHTML = "First Name is required.";
 		document.getElementById("signupFirstName").style.color = "red";
-		return; 
+		hasErrors = true; 
 	}
 
 	if(lastName === ""){
 		document.getElementById("signupLastName").innerHTML = "Last Name is required.";
 		document.getElementById("signupLastName").style.color = "red";
-		return; 
+		hasErrors = true; 
 	}
 
 	if (login === "") {
         document.getElementById("signupLogin").innerHTML = "Username is required.";
         document.getElementById("signupLogin").style.color = "red";
-        return;
+        hasErrors = true;
     }
 
     //password length (minimum of 8 characters)
     if (password.length < 8) {
         document.getElementById("signupPassword").innerHTML = "Password must be at least 8 characters.";
         document.getElementById("signupPassword").style.color = "red";
-        return;
+        hasErrors = true;
     }
 
 
@@ -59,6 +68,10 @@ function handleSignup() {
     if (password !== passwordConfirm) {
         document.getElementById("signupPasswordConfirm").innerHTML = "Passwords do not match.";
         document.getElementById("signupPasswordConfirm").style.color = "red";
+        return;
+    }
+	//stop form submission if there are errors
+    if (hasErrors) {
         return;
     }
 
