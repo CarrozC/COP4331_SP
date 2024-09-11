@@ -1,4 +1,4 @@
-const urlBase = 'http://group30.xyz/LAMPAPI';
+const urlBase = 'http://group30.xyz/LAMPAPI/';
 const extension = 'php';
 
 let userId = 0;
@@ -58,6 +58,13 @@ function doLogin()
 
 }
 function doSignup() {
+	console.log(document.getElementById("signUpFirstName"));
+	console.log(document.getElementById("signupLastName"));
+	console.log(document.getElementById("signupLogin"));
+	console.log(document.getElementById("signupPassword"));
+	console.log(document.getElementById("signupPasswordConfirm"));
+
+    console.log("Sign-up button clicked");
     let firstName = document.getElementById("signupFirstName").value;
     let lastName = document.getElementById("signupLastName").value;
     let login = document.getElementById("signupLogin").value;
@@ -71,10 +78,11 @@ function doSignup() {
         return;
     }
 
-    let tmp = { firstName: firstName, lastName: lastName, login: login, password: password };
+    let tmp = { FirstName: firstName, LastName: lastName, Login: login, Password: password };
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/Signup.' + extension; // Ensure this is the correct endpoint URL
+    let url = urlBase + '/SignUp.' + extension;
+    console.log("API Request URL:", url);  // Log the URL to check
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
