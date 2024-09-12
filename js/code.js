@@ -20,16 +20,31 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-//signup
+
+
+// Wait for the DOM to fully load before attaching event listeners
+document.addEventListener("DOMContentLoaded", function() {
+    // Attach signup event listener
+    const signUpButton = document.getElementById("signUpConfirm");
+    
+    if (signUpButton) {
+        // Ensure the event listener is attached correctly
+        signUpButton.addEventListener("click", handleSignup);
+    }
+});
+
+// signup function to handle the signup process
 function handleSignup() {
+    console.log("Button clicked"); // Debugging to check if the event listener works
+
+    // Fetch input values
     let firstName = document.getElementById("signupFirstName").value;
     let lastName = document.getElementById("signupLastName").value;
     let login = document.getElementById("signupLogin").value;
     let password = document.getElementById("signupPassword").value;
     let passwordConfirm = document.getElementById("signupPasswordConfirm").value;
 
-	
-	
+    // Clear previous feedback messages
     document.getElementById("firstNameResult").innerHTML = "";
     document.getElementById("lastNameResult").innerHTML = "";
     document.getElementById("usernameResult").innerHTML = "";
@@ -37,57 +52,62 @@ function handleSignup() {
     document.getElementById("confirmPasswordResult").innerHTML = "";
 
     let hasErrors = false;
-	//Validation for non-empty values
-	if(firstName === ""){
-		document.getElementById("firstNameResult").innerHTML = "First Name is required.";
-		document.getElementById("firstNameResult").style.color = "red";
-		hasErrors = true; 
-	}
 
-	if(lastName === ""){
-		document.getElementById("lastNameResult").innerHTML = "Last Name is required.";
-		document.getElementById("lastNameResult").style.color = "red";
-		hasErrors = true; 
-	}
+    // Validation for non-empty values
+    if (firstName === "") {
+        document.getElementById("firstNameResult").innerHTML = "First Name is required.";
+        document.getElementById("firstNameResult").style.color = "red";
+        hasErrors = true; 
+    }
 
-	if (login === "") {
+    if (lastName === "") {
+        document.getElementById("lastNameResult").innerHTML = "Last Name is required.";
+        document.getElementById("lastNameResult").style.color = "red";
+        hasErrors = true; 
+    }
+
+    if (login === "") {
         document.getElementById("usernameResult").innerHTML = "Username is required.";
         document.getElementById("usernameResult").style.color = "red";
         hasErrors = true;
     }
 
-    //password length (minimum of 8 characters)
+    // Password length validation (minimum of 8 characters)
     if (password.length < 8) {
         document.getElementById("passwordResult").innerHTML = "Password must be at least 8 characters.";
         document.getElementById("passwordResult").style.color = "red";
         hasErrors = true;
     }
 
-
     // Check if passwords match
     if (password !== passwordConfirm) {
         document.getElementById("confirmPasswordResult").innerHTML = "Passwords do not match.";
         document.getElementById("confirmPasswordResult").style.color = "red";
-		hasErrors = true;
-    }
-	//stop form submission if there are errors
-    if (hasErrors) {
-        return;
+        hasErrors = true;
     }
 
+    // Stop form submission if there are validation errors
+    if (hasErrors) {
+        return; // Exit the function early if validation fails
+    }
+
+    // Prepare the data to send to the API
     let tmp = { FirstName: firstName, LastName: lastName, Login: login, Password: password };
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/SignUp.' + extension;
-    console.log("API Request URL:", url);  
+    console.log("API Request URL:", url); // Debugging to check the API URL
 
+    // Create and configure the XMLHttpRequest object
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
+    // Handle the response from the server
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
+                console.log("Response received"); // Debugging to check if the response comes back
                 let jsonObject = JSON.parse(xhr.responseText);
 
                 if (jsonObject.error) {
@@ -95,15 +115,18 @@ function handleSignup() {
                     document.getElementById("signupResult").style.color = "red";
                     return;
                 }
-
-                // Show confirmation message
+                // Show success confirmation message
                 document.getElementById("signupResult").innerHTML = "Account successfully created!";
                 document.getElementById("signupResult").style.color = "green";
 
-                // Redirect to login page after 1 seconds
+                // Redirect to login page after 1 second delay
                 setTimeout(function() {
                     window.location.href = "login.html";
                 }, 1000); // 1 second delay before redirection
+            } else if (xhr.readyState === 4) {
+                // Handle non-200 status errors
+                document.getElementById("signupResult").innerHTML = "Error occurred: " + xhr.status;
+                document.getElementById("signupResult").style.color = "red";
             }
         };
         xhr.send(jsonPayload);
@@ -112,6 +135,7 @@ function handleSignup() {
         document.getElementById("signupResult").style.color = "red";
     }
 }
+
 
 // Function to handle login
 function handleLogin() {
