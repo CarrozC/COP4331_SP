@@ -28,7 +28,7 @@ function handleSignup() {
     let password = document.getElementById("signupPassword").value;
     let passwordConfirm = document.getElementById("signupPasswordConfirm").value;
 
-
+	
 	
     document.getElementById("firstNameResult").innerHTML = "";
     document.getElementById("lastNameResult").innerHTML = "";
@@ -39,36 +39,36 @@ function handleSignup() {
     let hasErrors = false;
 	//Validation for non-empty values
 	if(firstName === ""){
-		document.getElementById("signupFirstName").innerHTML = "First Name is required.";
-		document.getElementById("signupFirstName").style.color = "red";
+		document.getElementById("firstNameResult").innerHTML = "First Name is required.";
+		document.getElementById("firstNameResult").style.color = "red";
 		hasErrors = true; 
 	}
 
 	if(lastName === ""){
-		document.getElementById("signupLastName").innerHTML = "Last Name is required.";
-		document.getElementById("signupLastName").style.color = "red";
+		document.getElementById("lastNameResult").innerHTML = "Last Name is required.";
+		document.getElementById("lastNameResult").style.color = "red";
 		hasErrors = true; 
 	}
 
 	if (login === "") {
-        document.getElementById("signupLogin").innerHTML = "Username is required.";
-        document.getElementById("signupLogin").style.color = "red";
+        document.getElementById("usernameResult").innerHTML = "Username is required.";
+        document.getElementById("usernameResult").style.color = "red";
         hasErrors = true;
     }
 
     //password length (minimum of 8 characters)
     if (password.length < 8) {
-        document.getElementById("signupPassword").innerHTML = "Password must be at least 8 characters.";
-        document.getElementById("signupPassword").style.color = "red";
+        document.getElementById("passwordResult").innerHTML = "Password must be at least 8 characters.";
+        document.getElementById("passwordResult").style.color = "red";
         hasErrors = true;
     }
 
 
     // Check if passwords match
     if (password !== passwordConfirm) {
-        document.getElementById("signupPasswordConfirm").innerHTML = "Passwords do not match.";
-        document.getElementById("signupPasswordConfirm").style.color = "red";
-        return;
+        document.getElementById("confirmPasswordResult").innerHTML = "Passwords do not match.";
+        document.getElementById("confirmPasswordResult").style.color = "red";
+		hasErrors = true;
     }
 	//stop form submission if there are errors
     if (hasErrors) {
