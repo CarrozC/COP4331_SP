@@ -96,8 +96,14 @@ function handleSignup() {
                     return;
                 }
 
-                // If successful, redirect to index or give feedback
-                window.location.href = "index.html";
+                // Show confirmation message
+                document.getElementById("signupResult").innerHTML = "Account successfully created!";
+                document.getElementById("signupResult").style.color = "green";
+
+                // Redirect to login page after 1 seconds
+                setTimeout(function() {
+                    window.location.href = "login.html";
+                }, 1000); // 1 second delay before redirection
             }
         };
         xhr.send(jsonPayload);
