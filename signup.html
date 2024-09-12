@@ -14,15 +14,20 @@
             <div class="form-container">
                 <form id="signup" class="input-form">
                     <input type="text" placeholder="First Name" id="signupFirstName" name="firstName" required>
-                    <div id="firstNameResult"></div>
+                    <div id="firstNameResult" class="error-message"></div> <!-- Error message -->
+                    
                     <input type="text" placeholder="Last Name" id="signupLastName" name="lastName" required>
-                    <div id="lastNameResult"></div>
+                    <div id="lastNameResult" class="error-message"></div> <!-- Error message -->
+                    
                     <input type="text" placeholder="Username" id="signupLogin" name="userName" required>
-                    <div id="usernameResult"></div>
+                    <div id="usernameResult" class="error-message"></div> <!-- Error message -->
+                    
                     <input type="password" placeholder="Password" id="signupPassword" name="password" required>
-                    <div id="passwordResult"></div>
+                    <div id="passwordResult" class="error-message"></div> <!-- Error message -->
+                    
                     <input type="password" placeholder="Confirm Password" id="signupPasswordConfirm" name="passwordConfirm" required>
-                    <div id="confirmPasswordResult"></div>
+                    <div id="confirmPasswordResult" class="error-message"></div> <!-- Error message -->
+                    
                     <button class="buttons" id="signUpConfirm" type="button">Sign Up!</button>
                 </form>
             </div>
