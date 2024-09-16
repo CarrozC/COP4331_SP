@@ -244,7 +244,7 @@ function addContact()
 	let hasErrors = false; 
 
 	// reset result text
-	document.getElementById("colorAddResult").innerHTML = "";
+	document.getElementById("addContactResult").innerHTML = "";
 
 	// check if input is valid
 	if(newFirstName === "")
