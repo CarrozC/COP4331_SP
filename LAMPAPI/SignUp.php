@@ -20,9 +20,10 @@ else
     $stmt = $conn->prepare("INSERT into Users (DateCreated, DateLastLoggedIn, FirstName, LastName, Login, Password) VALUES(?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssss", $DateCreated, $DateLastLoggedIn, $FirstName, $LastName, $Login, $Password);
     $stmt->execute();
+    $id = $conn->insert_id;
     $stmt->close();
     $conn->close();
-    returnWithInfo($FirstName, $LastName, $Login);
+    returnWithInfo($FirstName, $LastName, $id);
 }
 
 function getRequestInfo()
@@ -33,7 +34,7 @@ function getRequestInfo()
 function sendResultInfoAsJson($obj)
 {
     header('Content-type: application/json');
-    echo $obj;
+    echo json_encode($obj);  // Corrected: Use json_encode() to output valid JSON
 }
 
 function returnWithInfo( $firstName, $lastName, $id )
@@ -44,7 +45,7 @@ function returnWithInfo( $firstName, $lastName, $id )
 
 function returnWithError($err)
 {
-    $retValue = '{"error":"' . $err . '"}';
+    $retValue = array("id" => 0, "firstName" => "", "lastName" => "", "error" => $err);
     sendResultInfoAsJson($retValue);
 }
 ?>
