@@ -108,6 +108,7 @@ function handleSignup() {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 console.log("Response received"); // Debugging to check if the response comes back
+		console.log(xhr.responseText);  // Log the raw response text to debug
                 let jsonObject = JSON.parse(xhr.responseText);
 
                 if (jsonObject.error) {
