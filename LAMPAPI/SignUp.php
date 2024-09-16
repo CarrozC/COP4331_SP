@@ -21,7 +21,7 @@ else
     $stmt->execute();
     $stmt->close();
     $conn->close();
-    returnWithInfo("Successful");
+    returnWithInfo($FirstName, $LastName, $Login);
 }
 
 function getRequestInfo()
