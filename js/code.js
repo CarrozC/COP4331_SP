@@ -233,15 +233,74 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
-function addColor()
+// function to handle adding contacts
+function addContact()
 {
-	let newColor = document.getElementById("colorText").value;
+	let newFirstName = document.getElementById("firstName").value; 
+	let newLastName = document.getElementById("lastName").value; 
+	let newEmail = document.getElementById("email").value; 
+	let newPhoneNumber = document.getElementById("phone").value; 
+	let hasErrors = false; 
+
+	// reset result text
 	document.getElementById("colorAddResult").innerHTML = "";
 
-	let tmp = {color:newColor,userId,userId};
+	// check if input is valid
+	if(newFirstName === "")
+	{
+		document.getElementById("contactFirstNameResult").innerHTML = "First name must be entered";
+		hasErrors = true; 
+	}
+	if(newLastName === "")
+	{
+		document.getElementById("contactLastNameResult").innerHTML = "Last name must be entered"; 
+		hasErrors = true;
+	}
+	if (newEmail === "")
+	{
+		document.getElementById("contactEmailResult").innerHTML = "Email must be entered"; 
+		hasErrors = true;
+		
+	}
+	else
+	{
+		if (!validateEmail(newEmail))
+		{
+			document.getElementById("contactEmailResult").innerHTML = "Invalid Email"; 
+			hasErrors = true;
+		}
+	}
+
+	if (newPhoneNumber === "")
+	{
+		document.getElementById("contactPhoneResult").innerHTML = "Phone Number must be entered"; 
+		hasErrors = true;
+	}
+	else
+	{
+		// validate phone number
+		if(!validatePhoneNumber(newPhoneNumber))
+		{
+			document.getElementById("contactPhoneResult").innerHTML = "Invalid phone number"; 
+			hasErrors = true;
+		}
+	}
+
+	if (hasErrors)
+	{
+		return; 
+	}
+
+	let tmp = {
+		firstName: newFirstName, 
+		lastName: newLastName, 
+		phoneNumber: newPhoneNumber, 
+		emailAddress: newEmail, 
+		userId: userId 
+	}; 
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/AddColor.' + extension;
+	let url = urlBase + '/AddContacts.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -252,14 +311,15 @@ function addColor()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
+				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				loadContacts(); 
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
 	
 }
@@ -305,6 +365,90 @@ function searchColor()
 	catch(err)
 	{
 		document.getElementById("colorSearchResult").innerHTML = err.message;
+	}
+	
+}
+
+// helper functions 
+function validateEmail(email)
+{
+	const ret = String(email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/); 
+	return Boolean(ret); 
+}
+
+function validatePhoneNumber(phone)
+{
+	let regex = /^\+?(\d{1,3})?[-. (]?(\d{3})[-. )]?(\d{3})[-. ]?(\d{4})$/; 
+	const ret = String(phone).toLowerCase().match(regex); 
+	return Boolean(ret); 
+}
+
+// load contacts for the table
+function loadContacts()
+{
+	let tmp = {
+		search: "",
+		userId: userId
+	}; 
+
+	let jsonPayload = JSON.stringify(tmp); 
+
+	let url = urlBase + '/SearchContact.' + extension; 
+	let xhr = new XMLHttpRequest(); 
+	xhr.open("POST", url, true); 
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8"); 
+
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if(this.readyState == 4 && this.status == 200)
+			{
+				let jsonObject = JSON.parse(xhr.responseText); 
+				if(jsonObject.error)
+				{
+					console.log(jsonObject.error); 
+					return; 
+				}
+				for(let i = 0; i < jsonObject.results.length; i++)
+				{
+					ids[i] = jsonObject. results[i].ID; 
+					var table = document.getElementById("contactTable").getElementsByTagName('tbody')[0];
+            		var newRow = table.insertRow(table.rows.length);
+
+					// Insert new cells in the new row
+					var cell1 = newRow.insertCell(0);
+					var cell2 = newRow.insertCell(1);
+					var cell3 = newRow.insertCell(2);
+					var cell4 = newRow.insertCell(3);
+					var cell5 = newRow.insertCell(4);
+
+					// Add text to the new cells
+					cell1.innerHTML = jsonObject.results[i].FirstName;
+					cell2.innerHTML = jsonObject.results[i].LastName;
+					cell3.innerHTML = jsonObject.results[i].EmailAddress; 
+					cell4.innerHTML = jsonObject.results[i].PhoneNumber;
+
+					// Add edit and delete buttons
+					cell5.innerHTML = `
+						<button class="buttons" onclick="editContact(this)">Edit</button>
+						<button class="buttons" onclick="deleteContact(this)">Delete</button>
+					`;
+
+					// Clear input fields after adding the contact
+					document.getElementById('firstName').value = "";
+					document.getElementById('lastName').value = "";
+					document.getElementById('email').value = "";
+					document.getElementById('phone').value = ""; 
+
+				}
+			}
+		}; 
+		xhr.send(jsonPayload); 
+	}
+	catch(err)
+	{
+		console.log(err.message); 
 	}
 	
 }

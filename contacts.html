@@ -18,11 +18,16 @@
             <!-- Input form for adding contacts -->
             <div class="input-form">
                 <input type="text" id="firstName" placeholder="First Name" required>
+                <div id="contactFirstNameResult"></div>
                 <input type="text" id="lastName" placeholder="Last Name" required>
+                <div id="contactLastNameResult"></div>
                 <input type="email" id="email" placeholder="Email" required>
+                <div id="contactEmailResult"></div>
                 <input type="text" id="phone" placeholder="Phone Number" required>
+                <div id="contactPhoneResult"></div>
                 <button class="buttons" onclick="addContact()">Add Contact</button>
             </div>
+            <div id="addContactResult"></div>
 
             <!-- Contact Table -->
             <table id="contactTable">
