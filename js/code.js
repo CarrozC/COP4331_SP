@@ -257,16 +257,19 @@ function addContact()
 	if(newFirstName === "")
 	{
 		document.getElementById("contactFirstNameResult").innerHTML = "First name must be entered";
+		document.getElementById("contactFirstNameResult").style.color = "red";
 		hasErrors = true; 
 	}
 	if(newLastName === "")
 	{
 		document.getElementById("contactLastNameResult").innerHTML = "Last name must be entered"; 
+		document.getElementById("contactLastNameResult").style.color = "red";
 		hasErrors = true;
 	}
 	if (newEmail === "")
 	{
 		document.getElementById("contactEmailResult").innerHTML = "Email must be entered"; 
+		document.getElementById("contactEmailResult").style.color = "red";
 		hasErrors = true;
 		
 	}
@@ -275,6 +278,7 @@ function addContact()
 		if (!validateEmail(newEmail))
 		{
 			document.getElementById("contactEmailResult").innerHTML = "Invalid Email"; 
+			document.getElementById("contactEmailResult").style.color = "red";
 			hasErrors = true;
 		}
 	}
@@ -282,6 +286,7 @@ function addContact()
 	if (newPhoneNumber === "")
 	{
 		document.getElementById("contactPhoneResult").innerHTML = "Phone Number must be entered"; 
+		document.getElementById("contactPhoneResult").style.color = "red";
 		hasErrors = true;
 	}
 	else
@@ -290,6 +295,7 @@ function addContact()
 		if(!validatePhoneNumber(newPhoneNumber))
 		{
 			document.getElementById("contactPhoneResult").innerHTML = "Invalid phone number"; 
+			document.getElementById("contactPhoneResult").style.color = "red";
 			hasErrors = true;
 		}
 	}
@@ -328,6 +334,7 @@ function addContact()
 	catch(err)
 	{
 		document.getElementById("contactAddResult").innerHTML = err.message;
+		document.getElementById("contactAddResult").style.color = "red";
 	}
 	
 }

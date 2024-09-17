@@ -37,7 +37,7 @@ body {
 }
 
 
-.input-form input[type="text"], .input-form input[type="password"] {
+.input-form input[type="text"], .input-form input[type="password"], .input-form input[type="email"] {
     padding: 12px; 
     font-size: 1.3rem; 
     border-radius: 5px;
