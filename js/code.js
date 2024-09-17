@@ -18,6 +18,13 @@ document.addEventListener("DOMContentLoaded", function() {
     if (loginButton) {
         loginButton.addEventListener("click", handleLogin);
     }
+
+	// attach add contact 
+	const addContactButton = document.getElementById("addContactButton"); 
+	if(addContactButton)
+	{
+		addContactButton.addEventListener("click", addContact); 
+	}
 });
 
 
