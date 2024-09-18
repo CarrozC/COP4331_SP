@@ -334,12 +334,44 @@ function addContact()
 	
 }
 
-function deleteContact(name)
+function deleteContact(button)
 {
+	// get the row of the button that was clicked
+	let row = button.parentNode.parentNode; 
+	// get the name of the contact 
+	let rowName = row.cells[0].innerHTML; 
+
 	let tmp = {
-		firstName: name,
+		firstName: rowName,
 		userId: userId
 	}
+
+	let jsonPayload = json.stringify(tmp); 
+	let url = urlBase + '/DeleteContact.' + extension; 
+
+	let xhr = new XMLHttpRequest(); 
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("contactAddResult").innerHTML = "Deletion Successful";
+				document.getElementById("contactAddResult").style.color = "green";
+	
+			}
+		};
+		xhr.send(jsonPayload);
+        loadContacts(); 
+	}
+	catch(err)
+	{
+		document.getElementById("contactAddResult").innerHTML = err.message;
+		document.getElementById("contactAddResult").style.color = "red";
+	}
+
 }
 
 function searchColor()
