@@ -320,11 +320,11 @@ function addContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("addContactResult").innerHTML = "Contact has been added";
-                document.getElementById("addContactResult").style.color = "green"; 
+                document.getElementById("addContactResult").style.color = "green";
+				loadContacts();  
 			}
 		};
 		xhr.send(jsonPayload);
-        loadContacts(); 
 	}
 	catch(err)
 	{
@@ -438,6 +438,7 @@ function validatePhoneNumber(phone)
 function loadContacts()
 {
     readCookie(); // gets info of logged in user
+	var tableBody = document.getElementById("contactTable").getElementsByTagName('tbody')[0]; // table reference
 	// create a search
 	let tmp = {
 		search: "",
@@ -462,10 +463,12 @@ function loadContacts()
 				if(jsonObject.error)
 				{
 					console.log(jsonObject.error); 
+					// clear the table
+					tableBody.innerHTML = "";
+
 					return; 
 				}
 				 // Clear the table body before adding new rows
-				 var tableBody = document.getElementById("contactTable").getElementsByTagName('tbody')[0];
 				 tableBody.innerHTML = ""; // This clears the tbody
 				for(let i = 0; i < jsonObject.results.length; i++)
 				{
