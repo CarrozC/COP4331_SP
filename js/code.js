@@ -360,11 +360,13 @@ function deleteContact(button)
 			{
 				document.getElementById("addContactResult").innerHTML = "Deletion Successful";
 				document.getElementById("addContactResult").style.color = "green";
+				loadContacts(); 
 	
 			}
 		};
 		xhr.send(jsonPayload);
-        loadContacts(); 
+		loadContacts(); 
+        
 	}
 	catch(err)
 	{
