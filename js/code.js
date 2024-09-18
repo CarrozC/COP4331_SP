@@ -244,8 +244,7 @@ function doLogout()
 // function to handle adding contacts
 function addContact()
 {
-	let newFirstName = document.getElementById("firstName").value; 
-	let newLastName = document.getElementById("lastName").value; 
+	let newName = document.getElementById("name").value; 
 	let newEmail = document.getElementById("email").value; 
 	let newPhoneNumber = document.getElementById("phone").value; 
 	let hasErrors = false; 
@@ -254,17 +253,11 @@ function addContact()
 	document.getElementById("addContactResult").innerHTML = "";
 
 	// check if input is valid
-	if(newFirstName === "")
+	if(newName === "")
 	{
 		document.getElementById("contactFirstNameResult").innerHTML = "First name must be entered";
 		document.getElementById("contactFirstNameResult").style.color = "red";
 		hasErrors = true; 
-	}
-	if(newLastName === "")
-	{
-		document.getElementById("contactLastNameResult").innerHTML = "Last name must be entered"; 
-		document.getElementById("contactLastNameResult").style.color = "red";
-		hasErrors = true;
 	}
 	if (newEmail === "")
 	{
@@ -306,8 +299,7 @@ function addContact()
 	}
 
 	let tmp = {
-		firstName: newFirstName, 
-		lastName: newLastName, 
+		name: newName,  
 		phoneNumber: newPhoneNumber, 
 		emailAddress: newEmail, 
 		userId: userId 
@@ -436,23 +428,20 @@ function loadContacts()
 					var cell2 = newRow.insertCell(1);
 					var cell3 = newRow.insertCell(2);
 					var cell4 = newRow.insertCell(3);
-					var cell5 = newRow.insertCell(4);
 
 					// Add text to the new cells
-					cell1.innerHTML = jsonObject.results[i].FirstName;
+					cell1.innerHTML = jsonObject.results[i].Name;
 					cell2.innerHTML = jsonObject.results[i].LastName;
 					cell3.innerHTML = jsonObject.results[i].EmailAddress; 
-					cell4.innerHTML = jsonObject.results[i].PhoneNumber;
 
 					// Add edit and delete buttons
-					cell5.innerHTML = `
+					cell4.innerHTML = `
 						<button class="buttons" onclick="editContact(this)">Edit</button>
 						<button class="buttons" onclick="deleteContact(this)">Delete</button>
 					`;
 
 					// Clear input fields after adding the contact
-					document.getElementById('firstName').value = "";
-					document.getElementById('lastName').value = "";
+					document.getElementById('name').value = "";
 					document.getElementById('email').value = "";
 					document.getElementById('phone').value = ""; 
 
