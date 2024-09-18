@@ -298,6 +298,7 @@ function addContact()
 		return; 
 	}
 
+
 	let tmp = {
 		Name: newName,  
 		phone: newPhoneNumber, 
@@ -397,7 +398,7 @@ function loadContacts()
     readCookie(); 
 	let tmp = {
 		search: "",
-		userId: userId
+		UserId: userId
 	}; 
 
 	let jsonPayload = JSON.stringify(tmp); 
