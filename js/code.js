@@ -184,7 +184,6 @@ function handleLogin() {
             }
         };
         xhr.send(jsonPayload);
-        readCookie(); 
     } catch (err) {
         document.getElementById("loginResult").innerHTML = err.message;
         document.getElementById("loginResult").style.color = "red";
@@ -395,6 +394,7 @@ function validatePhoneNumber(phone)
 // load contacts for the table
 function loadContacts()
 {
+    readCookie(); 
 	let tmp = {
 		search: "",
 		userId: userId
