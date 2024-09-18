@@ -177,6 +177,7 @@ function handleLogin() {
                 // Store user info in cookies or session
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
+                userId = jsonObject.userId; 
                 saveCookie();
 
                 // Redirect to another page (e.g., dashboard)
