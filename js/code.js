@@ -431,8 +431,8 @@ function loadContacts()
 
 					// Add text to the new cells
 					cell1.innerHTML = jsonObject.results[i].Name;
-					cell2.innerHTML = jsonObject.results[i].LastName;
-					cell3.innerHTML = jsonObject.results[i].EmailAddress; 
+					cell2.innerHTML = jsonObject.results[i].email;
+					cell3.innerHTML = jsonObject.results[i].phone; 
 
 					// Add edit and delete buttons
 					cell4.innerHTML = `
