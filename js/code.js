@@ -437,7 +437,7 @@ function loadContacts()
 				for(let i = 0; i < jsonObject.results.length; i++)
 				{
 					ids[i] = jsonObject.results[i].ID; 
-            		var newRow = tableBody.insertRow(table.rows.length);
+            		var newRow = tableBody.insertRow(tableBody.rows.length);
 
 					// Insert new cells in the new row
 					var cell1 = newRow.insertCell(0);
