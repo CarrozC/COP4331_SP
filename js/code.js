@@ -299,7 +299,7 @@ function addContact()
 	}
 
 	let tmp = {
-		name: newName,  
+		Name: newName,  
 		phoneNumber: newPhoneNumber, 
 		emailAddress: newEmail, 
 		userId: userId 
