@@ -317,7 +317,7 @@ function addContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				document.getElementById("addContactResult").innerHTML = "Contact has been added";
 				loadContacts(); 
 			}
 		};
