@@ -508,3 +508,83 @@ function loadContacts()
 	}
 	
 }
+function editContact(button) {
+    // Get the row of the contact to edit
+    let row = button.parentNode.parentNode;
+    
+    // Get current contact details
+    let currentName = row.cells[0].innerHTML;
+    let currentEmail = row.cells[1].innerHTML;
+    let currentPhone = row.cells[2].innerHTML;
+    
+    // Pre-fill the form with current contact details
+    document.getElementById("name").value = currentName;
+    document.getElementById("email").value = currentEmail;
+    document.getElementById("phone").value = currentPhone;
+    
+    // Change the "Add Contact" button to an "Update Contact" button
+    let addContactButton = document.getElementById("addContactButton");
+    addContactButton.innerText = "Update Contact";
+    
+    // Remove any existing click event for adding contact
+    addContactButton.removeEventListener("click", addContact);
+    
+    // Attach the "updateContact" function for the update process
+    addContactButton.addEventListener("click", function() {
+        updateContact(row);
+    });
+}
+function updateContact(row) {
+    // Get the contact ID (assuming ids[] stores the IDs of each contact row)
+    let contactId = ids[row.rowIndex - 1]; // The rowIndex starts at 1, adjust for zero-based array
+
+    // Get updated details from the form
+    let updatedName = document.getElementById("name").value;
+    let updatedEmail = document.getElementById("email").value;
+    let updatedPhone = document.getElementById("phone").value;
+
+    // Prepare payload
+    let tmp = {
+        userId: userId,
+        contactId: contactId,
+        Name: updatedName,
+        email: updatedEmail,
+        phone: updatedPhone
+    };
+    let jsonPayload = JSON.stringify(tmp);
+
+    // Send the updated data to the server
+    let url = urlBase + '/EditContacts.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("addContactResult").innerText = "Contact updated successfully!";
+                document.getElementById("addContactResult").style.color = "green";
+                
+                // Refresh the contact list
+                loadContacts();
+                
+                // Reset button back to "Add Contact"
+                document.getElementById("addContactButton").innerText = "Add Contact";
+                
+                // Reset input fields
+                document.getElementById('name').value = "";
+                document.getElementById('email').value = "";
+                document.getElementById('phone').value = "";
+                
+                // Remove the event listener for updating and re-attach the add contact event
+                document.getElementById("addContactButton").removeEventListener("click", updateContact);
+                document.getElementById("addContactButton").addEventListener("click", addContact);
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        document.getElementById("addContactResult").innerText = err.message;
+        document.getElementById("addContactResult").style.color = "red";
+    }
+}
