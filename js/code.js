@@ -358,8 +358,8 @@ function deleteContact(button)
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactAddResult").innerHTML = "Deletion Successful";
-				document.getElementById("contactAddResult").style.color = "green";
+				document.getElementById("addContactResult").innerHTML = "Deletion Successful";
+				document.getElementById("addContactResult").style.color = "green";
 	
 			}
 		};
