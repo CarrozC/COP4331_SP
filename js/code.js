@@ -416,6 +416,7 @@ function loadContacts()
 			if(this.readyState == 4 && this.status == 200)
 			{
 				let jsonObject = JSON.parse(xhr.responseText); 
+				console.log(jsonObject); 
 				if(jsonObject.error)
 				{
 					console.log(jsonObject.error); 
@@ -423,7 +424,7 @@ function loadContacts()
 				}
 				for(let i = 0; i < jsonObject.results.length; i++)
 				{
-					ids[i] = jsonObject. results[i].ID; 
+					ids[i] = jsonObject.results[i].ID; 
 					var table = document.getElementById("contactTable").getElementsByTagName('tbody')[0];
             		var newRow = table.insertRow(table.rows.length);
 
