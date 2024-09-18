@@ -398,7 +398,7 @@ function loadContacts()
     readCookie(); 
 	let tmp = {
 		search: "",
-		UserId: userId
+		UserID: userId
 	}; 
 
 	let jsonPayload = JSON.stringify(tmp); 
