@@ -346,7 +346,7 @@ function deleteContact(button)
 		userId: userId
 	}
 
-	let jsonPayload = json.stringify(tmp); 
+	let jsonPayload = JSON.stringify(tmp); 
 	let url = urlBase + '/DeleteContact.' + extension; 
 
 	let xhr = new XMLHttpRequest(); 
