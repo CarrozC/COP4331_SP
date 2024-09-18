@@ -166,7 +166,7 @@ function handleLogin() {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
-                let userId = jsonObject.id;
+                userId = jsonObject.id;
 
                 if (userId < 1) {
                     document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
@@ -176,8 +176,7 @@ function handleLogin() {
 
                 // Store user info in cookies or session
                 firstName = jsonObject.firstName;
-                lastName = jsonObject.lastName;
-                userId = jsonObject.userId; 
+                lastName = jsonObject.lastName; 
                 saveCookie();
 
                 // Redirect to another page (e.g., dashboard)
