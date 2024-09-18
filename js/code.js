@@ -365,7 +365,6 @@ function deleteContact(button)
 			}
 		};
 		xhr.send(jsonPayload);
-		loadContacts(); 
         
 	}
 	catch(err)
