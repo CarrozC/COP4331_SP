@@ -334,6 +334,14 @@ function addContact()
 	
 }
 
+function deleteContact(name)
+{
+	let tmp = {
+		firstName: name,
+		userId: userId
+	}
+}
+
 function searchColor()
 {
 	let srch = document.getElementById("searchText").value;
@@ -396,7 +404,8 @@ function validatePhoneNumber(phone)
 // load contacts for the table
 function loadContacts()
 {
-    readCookie(); 
+    readCookie(); // gets info of logged in user
+	// create a search
 	let tmp = {
 		search: "",
 		UserID: userId
@@ -422,11 +431,13 @@ function loadContacts()
 					console.log(jsonObject.error); 
 					return; 
 				}
+				 // Clear the table body before adding new rows
+				 var tableBody = document.getElementById("contactTable").getElementsByTagName('tbody')[0];
+				 tableBody.innerHTML = ""; // This clears the tbody
 				for(let i = 0; i < jsonObject.results.length; i++)
 				{
 					ids[i] = jsonObject.results[i].ID; 
-					var table = document.getElementById("contactTable").getElementsByTagName('tbody')[0];
-            		var newRow = table.insertRow(table.rows.length);
+            		var newRow = tableBody.insertRow(table.rows.length);
 
 					// Insert new cells in the new row
 					var cell1 = newRow.insertCell(0);
