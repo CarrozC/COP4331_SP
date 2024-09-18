@@ -300,8 +300,8 @@ function addContact()
 
 	let tmp = {
 		Name: newName,  
-		phoneNumber: newPhoneNumber, 
-		emailAddress: newEmail, 
+		phone: newPhoneNumber, 
+		email: newEmail, 
 		userId: userId 
 	}; 
 	let jsonPayload = JSON.stringify( tmp );
