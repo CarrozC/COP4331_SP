@@ -1,21 +1,21 @@
 <?php
 $inData = getRequestInfo();
-$Name = $inData["Name"];
-$phone = $inData["phone"];
-$email = $inData["email"];
+$newName = $inData["Name"];
+$newPhone = $inData["phone"];
+$newEmail = $inData["email"];
 $userId = $inData["userId"];
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
-if ($conn->connect_error) {
+if ($conn->connect_error) {-
     returnWithError($conn->connect_error);
 } else {
-    $stmt = $conn->prepare("INSERT INTO Contacts (Name, Phone, Email, UserID) VALUES(?, ?, ?, ?)");
-    $stmt->bind_param("sssi", $Name, $phone, $email, $userId);
+    $stmt = $conn->prepare("UPDATE Contacts SET Name = ?, Phone = ?, Email = ? WHERE UserID = ?");
+    $stmt->bind_param("sssi", $newName, $newPhone, $newEmail, $userId);
     $stmt->execute();
     $stmt->close();
     $conn->close();
-    returnWithInfo("Contact added successfully");
+    returnWithInfo("Contact edited successfully");
 }
 
 function getRequestInfo() {
