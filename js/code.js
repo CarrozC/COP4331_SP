@@ -184,6 +184,7 @@ function handleLogin() {
             }
         };
         xhr.send(jsonPayload);
+        readCookie(); 
     } catch (err) {
         document.getElementById("loginResult").innerHTML = err.message;
         document.getElementById("loginResult").style.color = "red";
@@ -228,7 +229,7 @@ function readCookie()
 	}
 	else
 	{
-//		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		document.getElementById("user").innerHTML = firstName + " " + lastName;
 	}
 }
 
