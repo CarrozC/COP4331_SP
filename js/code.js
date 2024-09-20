@@ -524,13 +524,12 @@ function editContact(button) {
     row.cells[2].innerHTML = `<input type="email" value="${currentEmail}" id="editEmail" style="background-color:#ffebb0;">`;
     row.cells[3].innerHTML = `<input type="text" value="${currentPhone}" id="editPhone" style="background-color:#ffebb0;">`;
 
-    // Change buttons to 'Save' and 'Cancel'
+    // Change buttons to 'Confirm' and 'Cancel'
     button.parentNode.innerHTML = `
-        <button class="buttons" onclick="saveEdit(this)">✔</button>
-        <button class="buttons" onclick="cancelEdit(this)">✖</button>
+        <button class="buttons" onclick="confirmEdit(this)">Confirm</button>
+        <button class="buttons" onclick="cancelEdit(this)">Cancel</button>
     `;
 }
-
 function saveEdit(button) {
     // Get the row being edited
     let row = button.parentNode.parentNode;
@@ -583,4 +582,53 @@ function saveEdit(button) {
 
 function cancelEdit(button) {
     loadContacts();  // Cancel editing by reloading the table
+}
+function confirmEdit(button) {
+    // Get the row being edited
+    let row = button.parentNode.parentNode;
+
+    // Get updated values from input fields
+    let updatedFirstName = document.getElementById('editFirstName').value;
+    let updatedLastName = document.getElementById('editLastName').value;
+    let updatedEmail = document.getElementById('editEmail').value;
+    let updatedPhone = document.getElementById('editPhone').value;
+
+    // Validate email
+    if (!validateEmail(updatedEmail)) {
+        alert('Invalid email format');
+        return;
+    }
+
+    // Proceed to save contact (updateContact)
+    let contactId = ids[row.rowIndex - 1]; // Assuming ids are stored for each contact
+
+    let tmp = {
+        contactId: contactId,
+        userId: userId,
+        Name: updatedFirstName,
+        LastName: updatedLastName,
+        email: updatedEmail,
+        phone: updatedPhone
+    };
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/EditContacts.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("addContactResult").innerHTML = "Contact updated successfully!";
+                document.getElementById("addContactResult").style.color = "green";
+                loadContacts();  // Reload contacts
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        document.getElementById("addContactResult").innerHTML = err.message;
+        document.getElementById("addContactResult").style.color = "red";
+    }
 }
