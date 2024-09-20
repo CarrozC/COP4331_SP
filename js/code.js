@@ -509,51 +509,57 @@ function loadContacts()
 	
 }
 function editContact(button) {
-    // Get the row of the contact to edit
+    // Get the row to edit
     let row = button.parentNode.parentNode;
-    
-    // Get current contact details
-    let currentName = row.cells[0].innerHTML;
-    let currentEmail = row.cells[1].innerHTML;
-    let currentPhone = row.cells[2].innerHTML;
-    
-    // Pre-fill the form with current contact details
-    document.getElementById("name").value = currentName;
-    document.getElementById("email").value = currentEmail;
-    document.getElementById("phone").value = currentPhone;
-    
-    // Change the "Add Contact" button to an "Update Contact" button
-    let addContactButton = document.getElementById("addContactButton");
-    addContactButton.innerText = "Update Contact";
-    
-    // Remove any existing click event for adding contact
-    addContactButton.removeEventListener("click", addContact);
-    
-    // Attach the "updateContact" function for the update process
-    addContactButton.addEventListener("click", function() {
-        updateContact(row);
-    });
+
+    // Get the current details
+    let currentFirstName = row.cells[0].innerText;
+    let currentLastName = row.cells[1].innerText;
+    let currentEmail = row.cells[2].innerText;
+    let currentPhone = row.cells[3].innerText;
+
+    // Replace the text with input fields
+    row.cells[0].innerHTML = `<input type="text" value="${currentFirstName}" id="editFirstName" style="background-color:#ffebb0;">`;
+    row.cells[1].innerHTML = `<input type="text" value="${currentLastName}" id="editLastName" style="background-color:#ffebb0;">`;
+    row.cells[2].innerHTML = `<input type="email" value="${currentEmail}" id="editEmail" style="background-color:#ffebb0;">`;
+    row.cells[3].innerHTML = `<input type="text" value="${currentPhone}" id="editPhone" style="background-color:#ffebb0;">`;
+
+    // Change buttons to 'Save' and 'Cancel'
+    button.parentNode.innerHTML = `
+        <button class="buttons" onclick="saveEdit(this)">✔</button>
+        <button class="buttons" onclick="cancelEdit(this)">✖</button>
+    `;
 }
-function updateContact(row) {
-    // Get the contact ID (assuming ids[] stores the IDs of each contact row)
-    let contactId = ids[row.rowIndex - 1]; // The rowIndex starts at 1, adjust for zero-based array
 
-    // Get updated details from the form
-    let updatedName = document.getElementById("name").value;
-    let updatedEmail = document.getElementById("email").value;
-    let updatedPhone = document.getElementById("phone").value;
+function saveEdit(button) {
+    // Get the row being edited
+    let row = button.parentNode.parentNode;
 
-    // Prepare payload
+    // Get updated values from input fields
+    let updatedFirstName = document.getElementById('editFirstName').value;
+    let updatedLastName = document.getElementById('editLastName').value;
+    let updatedEmail = document.getElementById('editEmail').value;
+    let updatedPhone = document.getElementById('editPhone').value;
+
+    // Validate email
+    if (!validateEmail(updatedEmail)) {
+        alert('Invalid email format');
+        return;
+    }
+
+    // Proceed to save contact (updateContact)
+    let contactId = ids[row.rowIndex - 1]; // Assuming ids are stored for each contact
+
     let tmp = {
-        userId: userId,
         contactId: contactId,
-        Name: updatedName,
+        userId: userId,
+        Name: updatedFirstName,
+        LastName: updatedLastName,
         email: updatedEmail,
         phone: updatedPhone
     };
     let jsonPayload = JSON.stringify(tmp);
 
-    // Send the updated data to the server
     let url = urlBase + '/EditContacts.' + extension;
 
     let xhr = new XMLHttpRequest();
@@ -561,30 +567,20 @@ function updateContact(row) {
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try {
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("addContactResult").innerText = "Contact updated successfully!";
+                document.getElementById("addContactResult").innerHTML = "Contact updated successfully!";
                 document.getElementById("addContactResult").style.color = "green";
-                
-                // Refresh the contact list
-                loadContacts();
-                
-                // Reset button back to "Add Contact"
-                document.getElementById("addContactButton").innerText = "Add Contact";
-                
-                // Reset input fields
-                document.getElementById('name').value = "";
-                document.getElementById('email').value = "";
-                document.getElementById('phone').value = "";
-                
-                // Remove the event listener for updating and re-attach the add contact event
-                document.getElementById("addContactButton").removeEventListener("click", updateContact);
-                document.getElementById("addContactButton").addEventListener("click", addContact);
+                loadContacts();  // Reload contacts
             }
         };
         xhr.send(jsonPayload);
     } catch (err) {
-        document.getElementById("addContactResult").innerText = err.message;
+        document.getElementById("addContactResult").innerHTML = err.message;
         document.getElementById("addContactResult").style.color = "red";
     }
+}
+
+function cancelEdit(button) {
+    loadContacts();  // Cancel editing by reloading the table
 }
