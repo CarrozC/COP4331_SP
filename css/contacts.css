@@ -102,3 +102,48 @@ th, td {
         font-size: 1.2rem; 
     }
 }
+
+.form-container {
+    max-width: 100%; /* Set maximum width */
+    overflow-x: hidden; 
+    margin: 0 auto; /* Center the content */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+#contactTable {
+    width: 100%; 
+    border-collapse: collapse; 
+}
+
+#contactTable th, #contactTable td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc; 
+}
+
+#contactTable input[type="text"], #contactTable input[type="email"] {
+    width: 100%; /* Ensure input fields take up the full width */
+    box-sizing: border-box; /* Ensure padding is accounted for within width */
+}
+
+.buttons {
+    padding: 5px 10px; /* Adjust padding for smaller buttons */
+    font-size: 0.9rem; 
+}
+
+
+@media only screen and (max-width: 600px) {
+    .form-container {
+        width: 100%; 
+    }
+
+    #contactTable th, #contactTable td {
+        font-size: 0.8rem; 
+    }
+
+    .buttons {
+        font-size: 0.8rem; 
+    }
+}
