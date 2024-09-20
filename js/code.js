@@ -241,97 +241,84 @@ function doLogout()
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
 }
+// Validation function for contact inputs
+function validateContactInputs(name, email, phone) {
+    let hasErrors = false;
+
+    // Reset previous validation messages
+    document.getElementById("contactFirstNameResult").innerHTML = "";
+    document.getElementById("contactEmailResult").innerHTML = "";
+    document.getElementById("contactPhoneResult").innerHTML = "";
+
+    // Validate Name
+    if (name.trim() === "") {
+        document.getElementById("contactFirstNameResult").innerHTML = "First name must be entered.";
+        document.getElementById("contactFirstNameResult").style.color = "red";
+        hasErrors = true;
+    }
+
+    // Validate Email
+    if (email.trim() === "") {
+        document.getElementById("contactEmailResult").innerHTML = "Email must be entered.";
+        document.getElementById("contactEmailResult").style.color = "red";
+        hasErrors = true;
+    } else if (!validateEmail(email)) {
+        document.getElementById("contactEmailResult").innerHTML = "Invalid Email.";
+        document.getElementById("contactEmailResult").style.color = "red";
+        hasErrors = true;
+    }
+
+    // Validate Phone
+    if (phone.trim() === "") {
+        document.getElementById("contactPhoneResult").innerHTML = "Phone Number must be entered.";
+        document.getElementById("contactPhoneResult").style.color = "red";
+        hasErrors = true;
+    } else if (!validatePhoneNumber(phone)) {
+        document.getElementById("contactPhoneResult").innerHTML = "Invalid Phone Number.";
+        document.getElementById("contactPhoneResult").style.color = "red";
+        hasErrors = true;
+    }
+
+    return !hasErrors; // Returns true if no errors
+}
 
 // function to handle adding contacts
-function addContact()
-{
-	let newName = document.getElementById("name").value; 
-	let newEmail = document.getElementById("email").value; 
-	let newPhoneNumber = document.getElementById("phone").value; 
-	let hasErrors = false; 
+function addContact() {
+    let newName = document.getElementById("name").value;
+    let newEmail = document.getElementById("email").value;
+    let newPhoneNumber = document.getElementById("phone").value;
 
-	// reset result text
-	document.getElementById("addContactResult").innerHTML = "";
+    // Validate inputs
+    if (!validateContactInputs(newName, newEmail, newPhoneNumber)) {
+        return;
+    }
 
-	// check if input is valid
-	if(newName === "")
-	{
-		document.getElementById("contactFirstNameResult").innerHTML = "First name must be entered";
-		document.getElementById("contactFirstNameResult").style.color = "red";
-		hasErrors = true; 
-	}
-	if (newEmail === "")
-	{
-		document.getElementById("contactEmailResult").innerHTML = "Email must be entered"; 
-		document.getElementById("contactEmailResult").style.color = "red";
-		hasErrors = true;
-		
-	}
-	else
-	{
-		if (!validateEmail(newEmail))
-		{
-			document.getElementById("contactEmailResult").innerHTML = "Invalid Email"; 
-			document.getElementById("contactEmailResult").style.color = "red";
-			hasErrors = true;
-		}
-	}
+    let tmp = {
+        Name: newName,
+        phone: newPhoneNumber,
+        email: newEmail,
+        userId: userId
+    };
+    let jsonPayload = JSON.stringify(tmp);
 
-	if (newPhoneNumber === "")
-	{
-		document.getElementById("contactPhoneResult").innerHTML = "Phone Number must be entered"; 
-		document.getElementById("contactPhoneResult").style.color = "red";
-		hasErrors = true;
-	}
-	else
-	{
-		// validate phone number
-		if(!validatePhoneNumber(newPhoneNumber))
-		{
-			document.getElementById("contactPhoneResult").innerHTML = "Invalid phone number"; 
-			document.getElementById("contactPhoneResult").style.color = "red";
-			hasErrors = true;
-		}
-	}
+    let url = urlBase + '/AddContacts.' + extension;
 
-	if (hasErrors)
-	{
-		return; 
-	}
-
-
-	let tmp = {
-		Name: newName,  
-		phone: newPhoneNumber, 
-		email: newEmail, 
-		userId: userId 
-	}; 
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/AddContacts.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("addContactResult").innerHTML = "Contact has been added";
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("addContactResult").innerHTML = "Contact has been added";
                 document.getElementById("addContactResult").style.color = "green";
-				loadContacts();  
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("contactAddResult").innerHTML = err.message;
-		document.getElementById("contactAddResult").style.color = "red";
-	}
-	
+                loadContacts();
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        document.getElementById("contactAddResult").innerHTML = err.message;
+        document.getElementById("contactAddResult").style.color = "red";
+    }
 }
 
 function deleteContact(button)
@@ -434,105 +421,98 @@ function validatePhoneNumber(phone)
 	return Boolean(ret); 
 }
 
-// load contacts for the table
-function loadContacts()
-{
-    readCookie(); // gets info of logged in user
-	var tableBody = document.getElementById("contactTable").getElementsByTagName('tbody')[0]; // table reference
-	// create a search
-	let tmp = {
-		search: "",
-		UserID: userId
-	}; 
+// Load contacts for the table
+function loadContacts() {
+    readCookie(); // Gets info of logged in user
+    var tableBody = document.getElementById("contactTable").getElementsByTagName('tbody')[0]; // Table reference
 
-	let jsonPayload = JSON.stringify(tmp); 
+    let tmp = {
+        search: "",
+        UserID: userId
+    };
 
-	let url = urlBase + '/SearchContact.' + extension; 
-	let xhr = new XMLHttpRequest(); 
-	xhr.open("POST", url, true); 
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8"); 
+    let jsonPayload = JSON.stringify(tmp);
 
-	try
-	{
-		xhr.onreadystatechange = function()
-		{
-			if(this.readyState == 4 && this.status == 200)
-			{
-				let jsonObject = JSON.parse(xhr.responseText); 
-				console.log(jsonObject); 
-				if(jsonObject.error)
-				{
-					console.log(jsonObject.error); 
-					// clear the table
-					tableBody.innerHTML = "";
+    let url = urlBase + '/SearchContact.' + extension;
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-					return; 
-				}
-				 // Clear the table body before adding new rows
-				 tableBody.innerHTML = ""; // This clears the tbody
-				for(let i = 0; i < jsonObject.results.length; i++)
-				{
-					ids[i] = jsonObject.results[i].ID; 
-            		var newRow = tableBody.insertRow(tableBody.rows.length);
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+                if (jsonObject.error) {
+                    console.log(jsonObject.error);
+                    tableBody.innerHTML = ""; // Clear the table
+                    return;
+                }
 
-					// Insert new cells in the new row
-					var cell1 = newRow.insertCell(0);
-					var cell2 = newRow.insertCell(1);
-					var cell3 = newRow.insertCell(2);
-					var cell4 = newRow.insertCell(3);
+                // Clear the table body before adding new rows
+                tableBody.innerHTML = ""; // This clears the tbody
 
-					// Add text to the new cells
-					cell1.innerHTML = jsonObject.results[i].Name;
-					cell2.innerHTML = jsonObject.results[i].Email;
-					cell3.innerHTML = jsonObject.results[i].Phone; 
+                for (let i = 0; i < jsonObject.results.length; i++) {
+                    ids[i] = jsonObject.results[i].ID;
+                    var newRow = tableBody.insertRow(tableBody.rows.length);
 
-					// Add edit and delete buttons
-					cell4.innerHTML = `
-						<button class="buttons" onclick="editContact(this)">Edit</button>
-						<button class="buttons" onclick="deleteContact(this)">Delete</button>
-					`;
+                    // Insert new cells in the new row
+                    var cell1 = newRow.insertCell(0);
+                    var cell2 = newRow.insertCell(1);
+                    var cell3 = newRow.insertCell(2);
+                    var cell4 = newRow.insertCell(3);
 
-					// Clear input fields after adding the contact
-					document.getElementById('name').value = "";
-					document.getElementById('email').value = "";
-					document.getElementById('phone').value = ""; 
+                    // Add text to the new cells
+                    cell1.innerHTML = jsonObject.results[i].Name;
+                    cell2.innerHTML = jsonObject.results[i].Email;
+                    cell3.innerHTML = jsonObject.results[i].Phone;
 
-				}
-			}
-		}; 
-		xhr.send(jsonPayload); 
-	}
-	catch(err)
-	{
-		console.log(err.message); 
-	}
-	
+                    // Add edit and delete buttons
+                    cell4.innerHTML = `
+                        <button class="buttons" onclick="editContact(this)">Edit</button>
+                        <button class="buttons" onclick="deleteContact(this)">Delete</button>
+                    `;
+
+                    // Clear input fields after adding the contact
+                    document.getElementById('name').value = "";
+                    document.getElementById('email').value = "";
+                    document.getElementById('phone').value = "";
+                }
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        console.log(err.message);
+    }
 }
 function editContact(button) {
     // Get the row of the contact to edit
     let row = button.parentNode.parentNode;
-    
+
     // Get current contact details
     let currentName = row.cells[0].innerHTML;
     let currentEmail = row.cells[1].innerHTML;
     let currentPhone = row.cells[2].innerHTML;
-    
+
     // Pre-fill the form with current contact details
     document.getElementById("name").value = currentName;
     document.getElementById("email").value = currentEmail;
     document.getElementById("phone").value = currentPhone;
-    
+
     // Change the "Add Contact" button to an "Update Contact" button
     let addContactButton = document.getElementById("addContactButton");
     addContactButton.innerText = "Update Contact";
-    
+
     // Remove any existing click event for adding contact
     addContactButton.removeEventListener("click", addContact);
-    
+
     // Attach the "updateContact" function for the update process
-    addContactButton.addEventListener("click", function() {
+    let updateHandler = function () {
         updateContact(row);
-    });
+    };
+
+    // Attach the update event handler and store it so we can remove it later
+    addContactButton.addEventListener("click", updateHandler);
+    addContactButton.updateHandler = updateHandler;
 }
 function updateContact(row) {
     // Get the contact ID (assuming ids[] stores the IDs of each contact row)
@@ -542,6 +522,11 @@ function updateContact(row) {
     let updatedName = document.getElementById("name").value;
     let updatedEmail = document.getElementById("email").value;
     let updatedPhone = document.getElementById("phone").value;
+
+    // Validate inputs before sending the update
+    if (!validateContactInputs(updatedName, updatedEmail, updatedPhone)) {
+        return;
+    }
 
     // Prepare payload
     let tmp = {
@@ -565,21 +550,22 @@ function updateContact(row) {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("addContactResult").innerText = "Contact updated successfully!";
                 document.getElementById("addContactResult").style.color = "green";
-                
+
                 // Refresh the contact list
                 loadContacts();
-                
+
                 // Reset button back to "Add Contact"
-                document.getElementById("addContactButton").innerText = "Add Contact";
-                
+                let addContactButton = document.getElementById("addContactButton");
+                addContactButton.innerText = "Add Contact";
+
                 // Reset input fields
                 document.getElementById('name').value = "";
                 document.getElementById('email').value = "";
                 document.getElementById('phone').value = "";
-                
-                // Remove the event listener for updating and re-attach the add contact event
-                document.getElementById("addContactButton").removeEventListener("click", updateContact);
-                document.getElementById("addContactButton").addEventListener("click", addContact);
+
+                // Remove the specific update handler and re-attach the add contact event
+                addContactButton.removeEventListener("click", addContactButton.updateHandler);
+                addContactButton.addEventListener("click", addContact);
             }
         };
         xhr.send(jsonPayload);
