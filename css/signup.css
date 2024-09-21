@@ -27,15 +27,14 @@ body {
     font-weight: bold;
 }
 
-.input-form input[type="text"], 
-.input-form input[type="email"], 
-.input-form input[type="password"] {
+/* Styling for input fields */
+.input-form input[type="text"], .input-form input[type="email"], .input-form input[type="password"] {
     padding: 12px;
     font-size: 1.3rem;
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 100%;
-    margin-bottom: 10px; /* Adjusted to move error messages closer */
+    margin-bottom: 5px; /* Reduced to bring error messages closer */
     background-color: #f9f9f9;
     color: #333;
     box-sizing: border-box;
@@ -44,10 +43,11 @@ body {
 /* Error message styling */
 .error-message {
     color: red;
-    font-size: 0.8rem; /* Adjust size as needed */
+    font-size: 0.9rem;
     text-align: left;
-    margin-top: -8px; /* Negative margin to pull error message closer to the input field */
-    margin-bottom: 5px; /* Reduced space to bring error messages closer */
+    margin-top: -5px; /* Pulls the error message closer to the input */
+    margin-bottom: 10px; /* Adds space before the next input */
+    display: block;
 }
 
 .buttons {
