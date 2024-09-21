@@ -372,6 +372,7 @@ function deleteContact(button)
 function updateContact(row) {
     // Get the contact ID (assuming ids[] stores the IDs of each contact row)
     let contactId = ids[row.rowIndex - 1]; // The rowIndex starts at 1, adjust for zero-based array
+	console.log(contactId); 
 
     // Get updated details from the form
     let updatedName = document.getElementById("name").value;
@@ -522,7 +523,7 @@ function loadContacts()
 				 tableBody.innerHTML = ""; // This clears the tbody
 				for(let i = 0; i < jsonObject.results.length; i++)
 				{
-					ids[i] = jsonObject.results[i].ID; 
+					ids[i] = jsonObject.results[i].ID;
             		var newRow = tableBody.insertRow(tableBody.rows.length);
 
 					// Insert new cells in the new row
