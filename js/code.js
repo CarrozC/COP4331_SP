@@ -386,7 +386,7 @@ function updateContact(row) {
     // Prepare payload
     let tmp = {
         userId: userId,
-        contactId: contactId,
+        ID: contactId,
         Name: updatedName,
         email: updatedEmail,
         phone: updatedPhone
