@@ -18,11 +18,14 @@
             <!-- Input form for adding contacts -->
             <div class="input-form">
                 <input type="text" id="name" placeholder="Name" required>
-                <div id="contactNameResult"></div>
+                <div id="contactNameResult" class="error-message"></div>
+
                 <input type="email" id="email" placeholder="Email" required>
-                <div id="contactEmailResult"></div>
+                <div id="contactEmailResult" class="error-message"></div>
+
                 <input type="text" id="phone" placeholder="Phone Number" required>
-                <div id="contactPhoneResult"></div>
+                <div id="contactPhoneResult" class="error-message"></div>
+
                 <button class="buttons" id="addContactButton">Add Contact</button>
             </div>
             <div id="addContactResult"></div>
@@ -43,6 +46,7 @@
             </table>
         </div>
     </div>
+
 
     <!-- <script type="text/javascript">
         // Function to add a new contact to the table
