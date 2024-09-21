@@ -27,37 +27,27 @@ body {
     font-weight: bold;
 }
 
-.input-form input[type="text"], .input-form input[type="email"], .input-form input[type="password"] {
+.input-form input[type="text"], 
+.input-form input[type="email"], 
+.input-form input[type="password"] {
     padding: 12px;
     font-size: 1.3rem;
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 100%;
-    margin-bottom: 5px; /* Reduced to bring error messages closer */
+    margin-bottom: 10px; /* Adjusted to move error messages closer */
     background-color: #f9f9f9;
     color: #333;
     box-sizing: border-box;
 }
 
-.input-form input[type="text"], .input-form input[type="password"] {
-    padding: 12px; 
-    font-size: 1.3rem; 
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 100%; 
-    margin-bottom: 10px; /* Reduce margin to move error messages closer */
-    background-color: #f9f9f9; 
-    color: #333; /* Darker input text */
-    box-sizing: border-box; /* Include padding in width */
-}
-
 /* Error message styling */
 .error-message {
     color: red;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Adjust size as needed */
     text-align: left;
-    margin-bottom: 15px; /* Add space below each error message */
-    margin-top: -5px; /* Negative margin to pull error message closer to the input field */
+    margin-top: -8px; /* Negative margin to pull error message closer to the input field */
+    margin-bottom: 5px; /* Reduced space to bring error messages closer */
 }
 
 .buttons {
@@ -79,14 +69,6 @@ body {
 .buttons:hover {
     background-color: #08c787;
     color: #FFFFFF; 
-}
-
-.error-message {
-    color: red;
-    font-size: 0.8rem; /* Adjust size as needed */
-    text-align: left;
-    margin-top: 2px; /* Closer to the input field */
-    margin-bottom: 10px; /* Space before the next input field */
 }
 
 @media only screen and (max-width: 600px) {
