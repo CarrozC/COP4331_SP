@@ -40,17 +40,24 @@ body {
 
 
 .input-form input[type="text"], .input-form input[type="password"], .input-form input[type="email"] {
-    padding: 12px; 
-    font-size: 1.3rem; 
+    padding: 12px;
+    font-size: 1.3rem;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: 100%; 
-    margin-bottom: 25px; 
-    background-color: #f9f9f9; 
-    color: #333; /* Darker input text */
+    width: 100%;
+    margin-bottom: 5px; /* Reduce margin to bring the error messages closer */
+    background-color: #f9f9f9;
+    color: #333;
     box-sizing: border-box; /* Include padding in width */
 }
-
+/* Error message styling */
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    text-align: left;
+    margin-top: 2px; /* Closer to the input field */
+    margin-bottom: 10px; /* Space before the next input field */
+}
 
 .buttons {
     padding: 15px; 
