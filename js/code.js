@@ -257,7 +257,7 @@ function addContact()
 	document.getElementById("addContactResult").innerHTML = "";
 
 	// check if input is valid
-	if(!validateContactInfo(newName, newEmail, newPhoneNumber))
+	if(!validateContactInputs(newName, newEmail, newPhoneNumber))
 	{
 		return; 
 	}
