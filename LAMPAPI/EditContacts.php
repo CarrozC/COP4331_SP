@@ -4,14 +4,14 @@ $newName = $inData["Name"];
 $newPhone = $inData["Phone"];
 $newEmail = $inData["Email"];
 $newID = $inData["ID"];
-$userID = $inData["UserId"]
+$userID = $inData["UserID"]
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
 if ($conn->connect_error) {-
     returnWithError($conn->connect_error);
 } else {
-    $stmt = $conn->prepare("UPDATE Contacts SET Name = ?, Phone = ?, Email = ? WHERE ID = ? AND UserId = ? ");
+    $stmt = $conn->prepare("UPDATE Contacts SET Name = ?, Phone = ?, Email = ? WHERE ID = ? AND UserID = ? ");
     $stmt->bind_param("sssii", $newName, $newPhone, $newEmail, $newID, $userID);
     $stmt->execute();
     $stmt->close();
