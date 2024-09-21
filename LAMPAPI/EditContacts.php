@@ -2,14 +2,13 @@
 $newName = $inData["Name"];
 $newPhone = $inData["phone"];
 $newEmail = $inData["email"];
-$iD = (int)$inData["ID"];  // Ensure ID is cast to integer
+$iD = $inData["ID"];
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
-    // Debug: Log if prepare statement fails
     $stmt = $conn->prepare("UPDATE Contacts SET Name = ?, phone = ?, email = ? WHERE ID = ?");
     if (!$stmt) {
         returnWithError("Prepare failed: " . $conn->error);
@@ -19,7 +18,6 @@ if ($conn->connect_error) {
     $stmt->bind_param("sssi", $newName, $newPhone, $newEmail, $iD);
     
     if ($stmt->execute()) {
-        // Check if the update affected any rows
         if ($stmt->affected_rows > 0) {
             returnWithInfo("Contact edited successfully");
         } else {
