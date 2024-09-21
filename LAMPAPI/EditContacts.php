@@ -9,8 +9,12 @@ $ID = $inData["ID"];
 $newPhone = $inData["Phone"];
 $newEmail = $inData["Email"];
 $newID = $inData["ID"];
+<<<<<<< HEAD
 $userID = $inData["UserId"]
 >>>>>>> ccc161ab319d350e653b0ce7a343d86530ba2606
+=======
+$userID = $inData["UserID"]
+>>>>>>> 462674b3c226dd3ee1e6005cc9ce86d3705d9edc
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
