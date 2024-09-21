@@ -10,8 +10,8 @@ $inData = getRequestInfo();
 var_dump($inData); // This will output the received data to debug
 
 $newName = $inData["Name"];
-$newPhone = $inData["Phone"];
-$newEmail = $inData["Email"];
+$newPhone = $inData["phone"];
+$newEmail = $inData["email"];
 $iD = (int)$inData["ID"];  // Ensure ID is cast to integer
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -20,7 +20,7 @@ if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
     // Debug: Log if prepare statement fails
-    $stmt = $conn->prepare("UPDATE Contacts SET Name = ?, Phone = ?, Email = ? WHERE ID = ?");
+    $stmt = $conn->prepare("UPDATE Contacts SET Name = ?, phone = ?, email = ? WHERE ID = ?");
     if (!$stmt) {
         returnWithError("Prepare failed: " . $conn->error);
         exit();
