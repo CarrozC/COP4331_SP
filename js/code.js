@@ -248,7 +248,6 @@ function addContact()
 	let newName = document.getElementById("name").value; 
 	let newEmail = document.getElementById("email").value; 
 	let newPhoneNumber = document.getElementById("phone").value; 
-	let hasErrors = false; 
 
 	// reset error messages 
 	document.getElementById("contactNameResult").innerHTML = ""; 
@@ -258,47 +257,7 @@ function addContact()
 	document.getElementById("addContactResult").innerHTML = "";
 
 	// check if input is valid
-	if(newName === "")
-	{
-		document.getElementById("contactNameResult").innerHTML = "Name must be entered";
-		document.getElementById("contactNameResult").style.color = "red";
-		hasErrors = true; 
-	}
-	if (newEmail === "")
-	{
-		document.getElementById("contactEmailResult").innerHTML = "Email must be entered"; 
-		document.getElementById("contactEmailResult").style.color = "red";
-		hasErrors = true;
-		
-	}
-	else
-	{
-		if (!validateEmail(newEmail))
-		{
-			document.getElementById("contactEmailResult").innerHTML = "Invalid Email: Please enter a valid email address (example@example.com)"; 
-			document.getElementById("contactEmailResult").style.color = "red";
-			hasErrors = true;
-		}
-	}
-
-	if (newPhoneNumber === "")
-	{
-		document.getElementById("contactPhoneResult").innerHTML = "Phone Number must be entered"; 
-		document.getElementById("contactPhoneResult").style.color = "red";
-		hasErrors = true;
-	}
-	else
-	{
-		// validate phone number
-		if(!validatePhoneNumber(newPhoneNumber))
-		{
-			document.getElementById("contactPhoneResult").innerHTML = "Invalid phone number"; 
-			document.getElementById("contactPhoneResult").style.color = "red";
-			hasErrors = true;
-		}
-	}
-
-	if (hasErrors)
+	if(!validateContactInfo(newName, newEmail, newPhoneNumber))
 	{
 		return; 
 	}
@@ -471,7 +430,45 @@ function updateContact(row) {
     }
 }
 
+function validateContactInputs(name, email, phone) {
+    let hasErrors = false;
 
+    // Reset previous validation messages
+    document.getElementById("contactNameResult").innerHTML = "";
+    document.getElementById("contactEmailResult").innerHTML = "";
+    document.getElementById("contactPhoneResult").innerHTML = "";
+
+    // Validate Name
+    if (name.trim() === "") {
+        document.getElementById("contactFirstNameResult").innerHTML = "First name must be entered.";
+        document.getElementById("contactFirstNameResult").style.color = "red";
+        hasErrors = true;
+    }
+
+    // Validate Email
+    if (email.trim() === "") {
+        document.getElementById("contactEmailResult").innerHTML = "Email must be entered.";
+        document.getElementById("contactEmailResult").style.color = "red";
+        hasErrors = true;
+    } else if (!validateEmail(email)) {
+        document.getElementById("contactEmailResult").innerHTML = "Invalid Email.";
+        document.getElementById("contactEmailResult").style.color = "red";
+        hasErrors = true;
+    }
+
+    // Validate Phone
+    if (phone.trim() === "") {
+        document.getElementById("contactPhoneResult").innerHTML = "Phone Number must be entered.";
+        document.getElementById("contactPhoneResult").style.color = "red";
+        hasErrors = true;
+    } else if (!validatePhoneNumber(phone)) {
+        document.getElementById("contactPhoneResult").innerHTML = "Invalid Phone Number.";
+        document.getElementById("contactPhoneResult").style.color = "red";
+        hasErrors = true;
+    }
+
+    return !hasErrors; // Returns true if no errors
+}
 
 // helper functions 
 function validateEmail(email)
