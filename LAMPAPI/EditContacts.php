@@ -6,9 +6,6 @@ error_reporting(E_ALL);
 
 $inData = getRequestInfo();
 
-// Debug: Check what is being received
-var_dump($inData); // This will output the received data to debug
-
 $newName = $inData["Name"];
 $newPhone = $inData["phone"];
 $newEmail = $inData["email"];
