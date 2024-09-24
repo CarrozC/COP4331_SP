@@ -5,35 +5,34 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
+    height: 100vh;
     margin: 0;
 }
 
 .form-container {
-    background-color: #030e42; 
-    padding: 60px; 
+    background-color: #030e42;
+    padding: 60px;
     border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Soft shadow */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
     text-align: center;
-    width: 1000px; 
-    max-width: 90%; 
+    width: 1000px;
+    max-width: 90%;
     max-height: 80vh;
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
-
 .form-title {
-    font-size: 2.5rem; 
-    color: #cecece; 
-    margin-bottom: 30px; 
+    font-size: 2.5rem;
+    color: #cecece;
+    margin-bottom: 30px;
     text-align: center;
     font-weight: bold;
 }
 
 .subtitle {
-    font-size: 1.5rem; 
-    color: #cecece; 
-    margin-bottom: 30px; 
+    font-size: 1.5rem;
+    color: #cecece;
+    margin-bottom: 30px;
     text-align: center;
     font-weight: bold;
 }
@@ -53,7 +52,7 @@ body {
 }
 
 .icon-button:hover {
-    color: #08c787; /* Hover effect */
+    color: #08c787;
 }
 
 .input-form {
@@ -62,60 +61,33 @@ body {
     align-items: center;
 }
 
-.input-form input[type="text"], .input-form input[type="password"], .input-form input[type="email"] {
+.input-form input[type="text"], .input-form input[type="email"] {
     padding: 12px;
     font-size: 1.3rem;
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 100%;
-    margin-bottom: 5px; /* Reduce margin to bring the error messages closer */
+    margin-bottom: 5px;
     background-color: #f9f9f9;
     color: #333;
-    box-sizing: border-box; /* Include padding in width */
-}
-
-/* Style for the search box */
-.search-box {
-    padding: 12px;
-    font-size: 1.3rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 50%;
-    margin: 20px;  /* Reduce margin to bring the error messages closer */
-    background-color: #f9f9f9;
-    color: #333;
-    box-sizing: border-box; /* Include padding in width */
-}
-/* Error message styling */
-.error-message {
-    color: red;
-    font-size: 0.9rem;
-    text-align: left;
-    margin-top: 2px; /* Closer to the input field */
-    margin-bottom: 10px; /* Space before the next input field */
+    box-sizing: border-box;
 }
 
 .buttons {
-    padding: 15px; 
-    background-color: #06a347; 
-    color: #000000; 
-    border: 1px solid #000000; 
+    padding: 15px;
+    background-color: #06a347;
+    color: #000000;
+    border: 1px solid #000000;
     border-radius: 5px;
-    width: 100%; 
-    font-size: 1.3rem; 
+    width: 100%;
+    font-size: 1.3rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-
-.buttons + .buttons {
-    margin-top: 25px; 
-}
-
-
 .buttons:hover {
     background-color: #08c787;
-    color: #FFFFFF; 
+    color: #FFFFFF;
 }
 
 /* Hidden class for hiding the form */
@@ -124,24 +96,23 @@ body {
 }
 
 .table-container {
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
 }
 
-/* Design the tables */
 table {
-    border: 2px solid #cecece; 
+    border: 2px solid #cecece;
     border-radius: 15px;
-    border-collapse: collapse; 
-    max-width: 100%; 
-    overflow-x: auto; 
+    border-collapse: collapse;
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 th, td {
-    padding: 10px; 
-    width: 100%; 
-    border: 2px solid #cecece; 
-    color: #cecece; 
+    padding: 10px;
+    width: 100%;
+    border: 2px solid #cecece;
+    color: #cecece;
     text-align: center;
 }
 
@@ -152,6 +123,6 @@ th, td {
     }
 
     .buttons {
-        font-size: 1.2rem; 
+        font-size: 1.2rem;
     }
 }
