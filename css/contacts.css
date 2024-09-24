@@ -95,6 +95,11 @@ body {
     color: #FFFFFF; 
 }
 
+.table-container {
+    display: flex; 
+    justify-content: center; 
+}
+
 /* Design the tables */
 table {
     border: 2px solid #cecece; 
