@@ -41,6 +41,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+// function to detect input entered into the search box 
+document.getElementById("search").addEventListener("input", function(){
+    loadContacts(); // reload contact page
+}); 
 // signup function to handle the signup process
 function handleSignup() {
     console.log("Button clicked"); // Debugging to check if the event listener works
@@ -490,9 +494,11 @@ function loadContacts()
 {
     readCookie(); // gets info of logged in user
 	var tableBody = document.getElementById("contactTable").getElementsByTagName('tbody')[0]; // table reference
+    // get any searches entered
+    let searchString = document.getElementById("search").value; 
 	// create a search
 	let tmp = {
-		search: "",
+		search: searchString,
 		UserID: userId
 	}; 
 
