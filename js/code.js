@@ -26,6 +26,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	{
 		addContactButton.addEventListener("click", addContact); 
 	}
+
+    // attach search functionality 
+    document.getElementById("search").addEventListener("input", function(){
+        loadContacts(); // reload contact chart
+    }); 
 });
 
 
@@ -41,10 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// function to detect input entered into the search box 
-document.getElementById("search").addEventListener("input", function(){
-    loadContacts(); // reload contact page
-}); 
+ 
 // signup function to handle the signup process
 function handleSignup() {
     console.log("Button clicked"); // Debugging to check if the event listener works
