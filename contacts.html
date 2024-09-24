@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COP 4331 Group 30 Contact Page</title>
-    <link href="css/contacts.css" rel="stylesheet">	
+    <link href="css/contacts.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <script type="text/javascript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- Add FontAwesome -->
     <script type="text/javascript" src="js/md5.js"></script>
     <script type="text/javascript" src="js/code.js"></script>
 </head>
@@ -16,10 +16,10 @@
         <div class="form-container">
             <p class="subtitle">Contacts</p>
 
-            <!-- Button with person icon and "+" symbol -->
+            <!-- Add the person icon with a plus button -->
             <div class="add-contact-button-container">
                 <button id="toggleFormButton" class="icon-button">
-                    <i class="fa fa-user-plus"></i> <!-- FontAwesome Icon -->
+                    <i class="fa fa-user-plus"></i> <!-- FontAwesome Person Icon with + -->
                 </button>
             </div>
 
@@ -52,24 +52,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Contact rows -->
+                        <!-- Contact rows will be inserted dynamically here -->
                     </tbody>
                 </table>
              </div>
-            
         </div>
     </div>
 
-<script>
-    
-    document.getElementById("toggleFormButton").addEventListener("click", function() {
-        var form = document.getElementById("addContactForm");
-        if (form.classList.contains("hidden")) {
-            form.classList.remove("hidden");
-        } else {
-            form.classList.add("hidden");
-        }
-    });
-</script>
+    <script>
+        // Toggle the visibility of the Add Contact form
+        document.getElementById("toggleFormButton").addEventListener("click", function() {
+            var form = document.getElementById("addContactForm");
+            form.classList.toggle("hidden");
+        });
+    </script>
 </body>
 </html>
