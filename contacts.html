@@ -6,6 +6,7 @@
     <title>COP 4331 Group 30 Contact Page</title>
     <link href="css/contacts.css" rel="stylesheet">	
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <script type="text/javascript" src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="text/javascript" src="js/md5.js"></script>
     <script type="text/javascript" src="js/code.js"></script>
 </head>
@@ -14,9 +15,16 @@
         <h1 class="form-title"> Welcome <span id="user">User</span>!</h1>
         <div class="form-container">
             <p class="subtitle">Contacts</p>
-            
-            <!-- Input form for adding contacts -->
-            <div class="input-form">
+
+            <!-- Button with person icon and "+" symbol -->
+            <div class="add-contact-button-container">
+                <button id="toggleFormButton" class="icon-button">
+                    <i class="fa fa-user-plus"></i> <!-- FontAwesome Icon -->
+                </button>
+            </div>
+
+            <!-- Hidden Input form for adding contacts -->
+            <div class="input-form hidden" id="addContactForm">
                 <input type="text" id="name" placeholder="Name" required>
                 <div id="contactNameResult" class="error-message"></div>
 
@@ -28,6 +36,7 @@
 
                 <button class="buttons" id="addContactButton">Add Contact</button>
             </div>
+
             <div id="addContactResult"></div>
             <input type="text" id="search" placeholder="Search" class="search-box">
 
@@ -43,7 +52,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Contact rows will be inserted dynamically here -->
+                        <!-- Contact rows -->
                     </tbody>
                 </table>
              </div>
@@ -51,71 +60,16 @@
         </div>
     </div>
 
-
-
-    <!-- <script type="text/javascript">
-        // Function to add a new contact to the table
-        function addContact() {
-            var firstName = document.getElementById('firstName').value;
-            var lastName = document.getElementById('lastName').value;
-            var email = document.getElementById('email').value;
-            var phone = document.getElementById('phone').value;
-
-            if (firstName === "" || lastName === "" || email === "" || phone === "") {
-                alert("Please fill out all fields.");
-                return;
-            }
-
-            // Get the table and insert a new row at the end
-            var table = document.getElementById("contactTable").getElementsByTagName('tbody')[0];
-            var newRow = table.insertRow(table.rows.length);
-
-            // Insert new cells in the new row
-            var cell1 = newRow.insertCell(0);
-            var cell2 = newRow.insertCell(1);
-            var cell3 = newRow.insertCell(2);
-            var cell4 = newRow.insertCell(3);
-            var cell5 = newRow.insertCell(4);
-
-            // Add text to the new cells
-            cell1.innerHTML = firstName;
-            cell2.innerHTML = lastName;
-            cell3.innerHTML = email;
-            cell4.innerHTML = phone;
-
-            // Add edit and delete buttons
-            cell5.innerHTML = `
-                <button class="buttons" onclick="editContact(this)">Edit</button>
-                <button class="buttons" onclick="deleteContact(this)">Delete</button>
-            `;
-
-            // Clear input fields after adding the contact
-            document.getElementById('firstName').value = "";
-            document.getElementById('lastName').value = "";
-            document.getElementById('email').value = "";
-            document.getElementById('phone').value = "";
+<script>
+    
+    document.getElementById("toggleFormButton").addEventListener("click", function() {
+        var form = document.getElementById("addContactForm");
+        if (form.classList.contains("hidden")) {
+            form.classList.remove("hidden");
+        } else {
+            form.classList.add("hidden");
         }
-
-        // Function to delete a contact
-        function deleteContact(button) {
-            var row = button.parentNode.parentNode;
-            row.parentNode.removeChild(row);
-        }
-
-        // Function to edit a contact
-        function editContact(button) {
-            var row = button.parentNode.parentNode;
-            var cells = row.getElementsByTagName('td');
-
-            // Fill the input fields with the existing data
-            document.getElementById('firstName').value = cells[0].innerHTML;
-            document.getElementById('lastName').value = cells[1].innerHTML;
-            document.getElementById('email').value = cells[2].innerHTML;
-            document.getElementById('phone').value = cells[3].innerHTML;
-
-            // Delete the row after clicking edit to allow for the updated info
-            row.parentNode.removeChild(row);
-        }
-    </script> -->
+    });
+</script>
 </body>
 </html>
