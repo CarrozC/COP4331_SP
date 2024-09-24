@@ -447,8 +447,8 @@ function validateContactInputs(name, email, phone) {
 
     // Validate Name
     if (name.trim() === "") {
-        document.getElementById("contactFirstNameResult").innerHTML = "First name must be entered.";
-        document.getElementById("contactFirstNameResult").style.color = "red";
+        document.getElementById("contactNameResult").innerHTML = "First name must be entered.";
+        document.getElementById("contactNameResult").style.color = "red";
         hasErrors = true;
     }
 
