@@ -50,6 +50,19 @@ body {
     color: #333;
     box-sizing: border-box; /* Include padding in width */
 }
+
+/* Style for the search box */
+.search-box {
+    padding: 12px;
+    font-size: 1.3rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 50%;
+    margin-bottom: 5px; /* Reduce margin to bring the error messages closer */
+    background-color: #f9f9f9;
+    color: #333;
+    box-sizing: border-box; /* Include padding in width */
+}
 /* Error message styling */
 .error-message {
     color: red;
