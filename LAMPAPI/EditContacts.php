@@ -1,4 +1,5 @@
 <?php
+$inData = getRequestInfo();
 $newName = $inData["Name"];
 $newPhone = $inData["phone"];
 $newEmail = $inData["email"];
