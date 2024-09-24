@@ -2,7 +2,7 @@
 $newName = $inData["Name"];
 $newPhone = $inData["phone"];
 $newEmail = $inData["email"];
-$iD = $inData["ID"];
+$iD = (int)$inData["ID"];
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
