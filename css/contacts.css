@@ -14,15 +14,13 @@ body {
 }
 
 .form-container {
-    background-color: #030e42; 
+    background-color: rgba(0, 0, 0, 0.5); 
     padding: 60px; 
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Soft shadow */
     text-align: center;
-    width: 1000px; 
+    width: 500px; 
     max-width: 90%; 
-    max-height: 80vh;
-    overflow-y: auto; 
 }
 
 
