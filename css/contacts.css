@@ -26,7 +26,7 @@ body {
 
 .form-title {
     font-size: 2.5rem; 
-    color: #cecece; 
+    color: white; 
     margin-bottom: 30px; 
     text-align: center;
     font-weight: bold;
@@ -34,7 +34,7 @@ body {
 
 .subtitle {
     font-size: 1.5rem; 
-    color: #cecece; 
+    color: white; 
     margin-bottom: 30px; 
     text-align: center;
     font-weight: bold;
