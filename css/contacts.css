@@ -8,10 +8,11 @@ body {
     font-family: 'Ubuntu', sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh; 
+    align-items: flex-start;
+    min-height: 100vh; 
     margin: 0;
     text-align: center; 
+    overflow-x: hidden; 
 }
 
 .form-container {
@@ -22,7 +23,9 @@ body {
     text-align: center;
     width: 800px;  
     max-width: 90%; 
-    overflow-y: scroll; 
+    max-height: 90vh; 
+    overflow-y: auto;
+    overflow-x: hidden;  
 }
 
 
@@ -121,6 +124,8 @@ body {
 .table-container {
     display: flex; 
     justify-content: center; 
+    max-height: 60vh; 
+    overflow-y: auto; 
 }
 
 /* Design the tables */
@@ -131,6 +136,7 @@ table {
     width: 100%; 
     max-width: 750px; 
     table-layout: auto; 
+    overflow-y: auto; 
 
 }
 
