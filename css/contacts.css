@@ -121,7 +121,7 @@ table {
     border-collapse: collapse; 
     width: 100%; 
     overflow-x: auto; 
-    table-layout: fixed; 
+    table-layout: auto; 
 
 }
 
