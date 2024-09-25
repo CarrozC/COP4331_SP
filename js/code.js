@@ -385,6 +385,7 @@ function deleteContact(button)
  function editContact(button) {
     // open the edit contact menu 
     modal.style.display = "block"; 
+    document.getElementById("contactTitle").innerText = "Edit Contact"; 
     // Get the row of the contact to edit
     let row = button.parentNode.parentNode;
 
