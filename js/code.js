@@ -6,6 +6,15 @@ let firstName = "";
 let lastName = "";
 const ids = []; 
 
+// contact modal 
+let modal = document.getElementById("contactModal"); 
+ 
+// add contact button 
+let addButton = document.getElementById("add"); 
+
+// get the close button 
+let close = document.getElementsByClassName("close")[0];
+
 
 document.addEventListener("DOMContentLoaded", function() {
     //Attach signup
@@ -253,15 +262,6 @@ function doLogout()
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
 }
-
-// contact modal 
-let modal = document.getElementById("contactModal"); 
-
-// add contact button 
-let addButton = document.getElementById("add"); 
-
-// get the close button 
-let close = document.getElementsByClassName("close")[0]; 
 
 
 
