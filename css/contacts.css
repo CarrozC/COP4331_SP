@@ -115,6 +115,8 @@ body {
 #logOutButton {
     width: 25%;
     text-align: center;  
+    margin-bottom: 10px; 
+    margin-top: 10px; 
 }
 
 .table-container {
