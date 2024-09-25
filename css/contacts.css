@@ -76,8 +76,8 @@ body {
 
 .buttons {
     padding: 10px; 
-    width: 50%; 
-    font-size: 10px;
+    width: 100%; 
+    font-size: 25px;
     margin-top: 25px; 
     font-family: 'Ubuntu', sans-serif;
     color: white;
