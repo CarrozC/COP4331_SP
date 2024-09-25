@@ -21,6 +21,7 @@ body {
     text-align: center;
     width: 750px;  
     max-width: 90%; 
+    overflow-y: hidden; 
 }
 
 
@@ -120,6 +121,7 @@ table {
     border-radius: 15px;
     border-collapse: collapse; 
     width: 100%; 
+    max-width: 750px; 
     overflow-x: auto; 
     table-layout: auto; 
 
