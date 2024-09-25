@@ -60,9 +60,7 @@ body {
 
 /*Modal Container*/ 
 .modal {
-    display: flex;
-    justify-content: center;  /* Center horizontally */
-    align-items: center;  /* Center vertically */
+    display: none; 
     z-index: 1; 
     left: 0; 
     top: 0; 
