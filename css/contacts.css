@@ -124,8 +124,7 @@ body {
 .table-container {
     display: flex; 
     justify-content: center; 
-    max-height: 60vh; 
-    overflow-y: auto; 
+    max-height: 60vh;
 }
 
 /* Design the tables */
