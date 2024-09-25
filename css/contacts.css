@@ -11,7 +11,6 @@ body {
     align-items: center;
     height: 100vh; 
     margin: 0;
-    overflow-y: scroll; 
     text-align: center; 
 }
 
@@ -131,8 +130,7 @@ table {
     border-collapse: collapse; 
     width: 100%; 
     max-width: 750px; 
-    overflow-x: auto; 
-    table-layout: fixed; 
+    table-layout: auto; 
 
 }
 
