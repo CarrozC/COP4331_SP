@@ -6,17 +6,17 @@ let firstName = "";
 let lastName = "";
 const ids = []; 
 
-// contact modal 
-let modal = document.getElementById("contactModal"); 
- 
-// add contact button 
-let addButton = document.getElementById("add"); 
-
-// get the close button 
-let close = document.getElementsByClassName("close")[0];
 
 
 document.addEventListener("DOMContentLoaded", function() {
+    // contact modal 
+    let modal = document.getElementById("contactModal"); 
+ 
+    // add contact button 
+    let addButton = document.getElementById("add"); 
+
+    // get the close button 
+    let close = document.getElementsByClassName("close")[0];
     //Attach signup
     const signUpButton = document.getElementById("signUpConfirm");
     if (signUpButton) {
