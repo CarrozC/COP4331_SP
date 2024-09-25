@@ -539,6 +539,8 @@ function validatePhoneNumber(phone)
 // load contacts for the table
 function loadContacts()
 {
+    // close the menu 
+    modal.style.display = "none"; 
     readCookie(); // gets info of logged in user
 	var tableBody = document.getElementById("contactTable").getElementsByTagName('tbody')[0]; // table reference
     // get any searches entered
