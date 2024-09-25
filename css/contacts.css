@@ -111,6 +111,10 @@ body {
     margin-bottom: 10px; 
 }
 
+#logOutButton {
+    width: 50%; 
+}
+
 .table-container {
     display: flex; 
     justify-content: center; 
