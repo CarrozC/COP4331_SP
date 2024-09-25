@@ -116,19 +116,20 @@ body {
 
 /* Design the tables */
 table {
-    border: 2px solid #cecece; 
+    border: 2px solid white; 
     border-radius: 15px;
     border-collapse: collapse; 
     width: 100%; 
     overflow-x: auto; 
+    table-layout: fixed; 
 
 }
 
 th, td {
     padding: 10px; 
     width: 100%; 
-    border: 2px solid #cecece; 
-    color: #cecece; 
+    border: 2px solid white; 
+    color: white; 
     text-align: center;
 }
 
