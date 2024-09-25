@@ -328,6 +328,9 @@ function addContact()
 		document.getElementById("contactAddResult").innerHTML = err.message;
 		document.getElementById("contactAddResult").style.color = "red";
 	}
+
+    // close the menu 
+    modal.style.display = "none"; 
 	
 }
 
@@ -410,6 +413,10 @@ function deleteContact(button)
     // Attach the update event handler and store it so we can remove it later
     addContactButton.addEventListener("click", updateHandler);
     addContactButton.updateHandler = updateHandler;
+
+    // close the menu 
+    modal.style.display = "none"; 
+    
 }
 
 function updateContact(row) {
