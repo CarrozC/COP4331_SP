@@ -248,6 +248,30 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
+// contact modal 
+let modal = document.getElementById("contactModal"); 
+
+// add contact button 
+let addButton = document.getElementById("add"); 
+
+// get the close button 
+let close = document.getElementsByClassName("close")[0]; 
+
+// when the user clicks add contact, open the menu 
+addButton.onclick = function() {
+    document.getElementById("contactTitle").innerText = "Add Contact"; 
+    modal.style.display = "block"; 
+}
+
+close.onclick = function() {
+    // reset fields 
+    document.getElementById('name').value = "";
+    document.getElementById('email').value = "";
+    document.getElementById('phone').value = "";
+    modal.style.display = "none"; 
+}
+
+
 // function to handle adding contacts
 function addContact()
 {
@@ -352,6 +376,8 @@ function deleteContact(button)
 }
 
  function editContact(button) {
+    // open the edit contact menu 
+    modal.style.display = "block"; 
     // Get the row of the contact to edit
     let row = button.parentNode.parentNode;
 

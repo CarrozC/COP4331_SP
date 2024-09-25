@@ -16,19 +16,8 @@
         <div class="form-container">
             <p class="subtitle">Contacts</p>
             
-            <!-- Input form for adding contacts -->
-            <div class="input-form">
-                <input type="text" id="name" placeholder="Name" required>
-                <div id="contactNameResult" class="error-message"></div>
-
-                <input type="email" id="email" placeholder="Email" required>
-                <div id="contactEmailResult" class="error-message"></div>
-
-                <input type="text" id="phone" placeholder="Phone Number" required>
-                <div id="contactPhoneResult" class="error-message"></div>
-
-                <button class="buttons" id="addContactButton">Add Contact</button>
-            </div>
+            <!-- Button to open add contact menu-->
+            <button class="buttons" id="add">Add Contact</button>
             <div id="addContactResult"></div>
             <input type="text" id="search" placeholder="Search" class="search-box">
 
@@ -51,6 +40,24 @@
             
         </div>
     </div>
+    <!--Form for adding and editing contacts-->
+    <div id="contactModal" class="modal">
+        <div class="input-form">
+            <span class="close">&times;</span>
+            <h2 id="contactTitle">Add/Edit Contact</h2>
+            <input type="text" id="name" placeholder="Name" required>
+            <div id="contactNameResult" class="error-message"></div>
+    
+            <input type="email" id="email" placeholder="Email" required>
+            <div id="contactEmailResult" class="error-message"></div>
+    
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <div id="contactPhoneResult" class="error-message"></div>
+    
+            <button class="buttons" id="addContactButton">Add Contact</button>
+        </div>
+    </div>
+    
 
 
 
