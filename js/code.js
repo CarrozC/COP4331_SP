@@ -31,6 +31,12 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("search").addEventListener("input", function(){
         loadContacts(); // reload contact chart
     }); 
+
+    // When the user clicks add contact, open the menu 
+    addButton.onclick = function() {
+        document.getElementById("contactTitle").innerText = "Add Contact"; 
+        modal.style.display = "block"; 
+    }
 });
 
 
@@ -257,11 +263,7 @@ let addButton = document.getElementById("add");
 // get the close button 
 let close = document.getElementsByClassName("close")[0]; 
 
-// when the user clicks add contact, open the menu 
-addButton.onclick = function() {
-    document.getElementById("contactTitle").innerText = "Add Contact"; 
-    modal.style.display = "block"; 
-}
+
 
 close.onclick = function() {
     // reset fields 
