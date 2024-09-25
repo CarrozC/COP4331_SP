@@ -73,6 +73,9 @@ body {
 
 .modal-input {
     background-color: rgba(0, 0, 0, 0.5); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
     padding: 60px; 
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Soft shadow */

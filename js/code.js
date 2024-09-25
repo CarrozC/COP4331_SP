@@ -414,9 +414,6 @@ function deleteContact(button)
     // Attach the update event handler and store it so we can remove it later
     addContactButton.addEventListener("click", updateHandler);
     addContactButton.updateHandler = updateHandler;
-
-    // close the menu 
-    modal.style.display = "none"; 
     
 }
 
@@ -480,6 +477,9 @@ function updateContact(row) {
         document.getElementById("addContactResult").innerText = err.message;
         document.getElementById("addContactResult").style.color = "red";
     }
+
+     // close the menu 
+     modal.style.display = "none"; 
 }
 
 function validateContactInputs(name, email, phone) {
