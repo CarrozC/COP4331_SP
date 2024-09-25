@@ -5,12 +5,12 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 const ids = []; 
-
+let modal = null; 
 
 
 document.addEventListener("DOMContentLoaded", function() {
     // contact modal 
-    let modal = document.getElementById("contactModal"); 
+    modal = document.getElementById("contactModal"); 
  
     // add contact button 
     let addButton = document.getElementById("add"); 
@@ -46,6 +46,15 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("contactTitle").innerText = "Add Contact"; 
         modal.style.display = "block"; 
     }
+    
+    close.onclick = function() {
+        // reset fields 
+        document.getElementById('name').value = "";
+        document.getElementById('email').value = "";
+        document.getElementById('phone').value = "";
+        modal.style.display = "none"; 
+    }
+    
 });
 
 
@@ -265,13 +274,6 @@ function doLogout()
 
 
 
-close.onclick = function() {
-    // reset fields 
-    document.getElementById('name').value = "";
-    document.getElementById('email').value = "";
-    document.getElementById('phone').value = "";
-    modal.style.display = "none"; 
-}
 
 
 // function to handle adding contacts
