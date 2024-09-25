@@ -24,7 +24,7 @@ body {
     width: 800px;  
     max-width: 90%; 
     max-height: 90vh; 
-    overflow-y: hidden; 
+    overflow-y: auto; 
     overflow-x: hidden;  
 }
 
