@@ -26,14 +26,14 @@ body {
 
 .form-title {
     font-size: 2.5rem; 
-    color: #cecece; 
+    color: white; 
     margin-bottom: 30px; 
     text-align: center;
 }
 
 .subtitle {
     font-size: 2.0rem; 
-    color: #cecece; 
+    color: white; 
     margin-top: 0px; 
     text-align: center;
     font-weight: bold; 
