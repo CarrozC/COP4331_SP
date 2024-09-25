@@ -305,6 +305,13 @@ function addContact()
 
 function deleteContact(button)
 {
+    // give the user an alert box asking for deletion confirmation
+    let userResponse = confirm("Are you sure you want to delete this contact?"); 
+
+    if(!userResponse)
+    {
+        return; 
+    }
 	// get the row of the button that was clicked
 	let row = button.parentNode.parentNode; 
 	// get the name of the contact 
@@ -447,7 +454,7 @@ function validateContactInputs(name, email, phone) {
 
     // Validate Name
     if (name.trim() === "") {
-        document.getElementById("contactNameResult").innerHTML = "First name must be entered.";
+        document.getElementById("contactNameResult").innerHTML = "Name must be entered.";
         document.getElementById("contactNameResult").style.color = "red";
         hasErrors = true;
     }
