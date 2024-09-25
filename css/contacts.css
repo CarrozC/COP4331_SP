@@ -1,6 +1,10 @@
 /* General body styling */
 body {
-    background-color: #02021d; /* Dark background */
+    background-image: url('/images/pexels-stywo-1054218.jpg'); 
+    background-repeat: no-repeat; 
+    background-size: 100% 100%; 
+    background-attachment: fixed; 
+    /*background-color: #02021d; */ /* Dark background */
     font-family: 'Ubuntu', sans-serif;
     display: flex;
     justify-content: center;
@@ -73,26 +77,38 @@ body {
 }
 
 .buttons {
-    padding: 15px; 
-    background-color: #06a347; 
-    color: #000000; 
-    border: 1px solid #000000; 
-    border-radius: 5px;
-    width: 100%; 
-    font-size: 1.3rem; 
+    padding: 10px; 
+    width: 50%; 
+    font-size: 25px;
+    margin-top: 25px; 
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    background-color: rgba(52, 152, 219, 0.8); /* Semi-transparent blue */
+    border: 2px solid white; /* White border for contrast */
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  }
+  
+  /* Hover effect */
+  .buttons:hover {
+    background-color: rgba(41, 128, 185, 0.9); /* Darker semi-transparent blue */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4); /* Slightly larger shadow */
+  }
+  
+  /* Active button (pressed) */
+  .buttons:active {
+    background-color: rgba(26, 107, 153, 1); /* Full opaque darker blue */
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
 
 
 .buttons + .buttons {
     margin-top: 25px; 
-}
-
-
-.buttons:hover {
-    background-color: #08c787;
-    color: #FFFFFF; 
+    margin-bottom: 10px; 
 }
 
 .table-container {
