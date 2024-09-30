@@ -194,6 +194,14 @@ table input{
 }
 
 
+th:nth-child(1), td:nth-child(1) {
+    width: 50%; /* Adjust the width percentage as needed */
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 30%; /* Adjust the width percentage as needed */
+}
+
 @media only screen and (max-width: 600px) {
     .form-container {
         width: 100%;
