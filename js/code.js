@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('name').value = "";
         document.getElementById('email').value = "";
         document.getElementById('phone').value = "";
-        ocument.getElementById("contactTitle").innerText = "Add Contact";
+        document.getElementById("contactTitle").innerText = "Add Contact";
         modal.style.display = "none"; 
     }
     
