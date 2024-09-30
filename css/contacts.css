@@ -200,7 +200,7 @@ th:nth-child(1), td:nth-child(1) {
 }
 
 th:nth-child(3), td:nth-child(3) {
-    width: 40%; /* Adjust the width percentage as needed */
+    width: 70%; /* Adjust the width percentage as needed */
 }
 
 
