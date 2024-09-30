@@ -199,7 +199,7 @@ th:nth-child(1), td:nth-child(1) {
 }
 
 th:nth-child(3), td:nth-child(3) {
-    width: 100%; /* Adjust the width percentage as needed */
+    width: 200%; /* Adjust the width percentage as needed */
 }
 
 
