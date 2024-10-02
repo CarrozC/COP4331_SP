@@ -615,3 +615,27 @@ function loadContacts()
 	}
 	
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    createSnowflakes();
+
+    function createSnowflakes() {
+        const snowflakeCount = 100; //num of flakes
+        const snowflakesContainer = document.createElement('div');
+        snowflakesContainer.id = 'snowflakes';
+        document.body.appendChild(snowflakesContainer);
+
+        for (let i = 0; i < snowflakeCount; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.style.width = `${Math.random() * 5 + 2}px`; //random size
+            snowflake.style.height = snowflake.style.width; //circle
+            snowflake.style.left = `${Math.random() * 100}vw`; // Random position
+            snowflake.style.animationDuration = `${Math.random() * 5 + 3}s`; // Random fall speed
+            snowflake.style.animationDelay = `${Math.random() * 5}s`; //delay before starting
+
+            snowflakesContainer.appendChild(snowflake);
+        }
+    }
+});
+
